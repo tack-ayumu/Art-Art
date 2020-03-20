@@ -7,6 +7,7 @@
     android:background="@drawable/picaso"
     tools:context=".MainActivity">
 
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -18,12 +19,14 @@
             android:layout_height="wrap_content"
             android:layout_weight="3" />
 
+        <!--画像とテキストを中央でバランス良く位置させるためにLinearLayoutをボタン化-->
         <LinearLayout
             android:id="@+id/linearLayout"
             android:layout_width="270dp"
             android:layout_height="60dp"
             android:background="@drawable/frame_style"
-            android:gravity="center">
+            android:gravity="center"
+            android:elevation="100dp">
 
             <TextView
                 android:id="@+id/textView5"
@@ -102,7 +105,7 @@
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/note"
                 android:gravity="center"
-                android:text="n o t e"
+                android:text=" n o t e"
                 android:textColor="#6B6969"
                 android:textSize="24sp" />
         </LinearLayout>
