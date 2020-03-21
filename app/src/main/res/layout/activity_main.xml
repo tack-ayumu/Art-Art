@@ -20,7 +20,7 @@
 
         <!--画像とテキストを中央でバランス良く位置させるためにLinearLayoutをボタン化-->
         <LinearLayout
-            android:id="@+id/linearLayout"
+            android:id="@+id/linearLayout_search_exhibition"
             android:layout_width="270dp"
             android:layout_height="60dp"
             android:background="@drawable/frame_style"
@@ -28,7 +28,7 @@
             android:clickable="true">
 
             <TextView
-                android:id="@+id/textView5"
+                android:id="@+id/textView_search_exhibition"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/exhibition3"
@@ -46,7 +46,7 @@
             android:layout_weight="2" />
 
         <LinearLayout
-            android:id="@+id/linearLayout"
+            android:id="@+id/linearLayout_search_museum"
             android:layout_width="270dp"
             android:layout_height="60dp"
             android:background="@drawable/frame_style"
@@ -54,7 +54,7 @@
             android:clickable="true">>
 
             <TextView
-                android:id="@+id/textView5"
+                android:id="@+id/textView__search_museum"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/museum"
@@ -70,7 +70,7 @@
             android:layout_weight="2" />
 
         <LinearLayout
-            android:id="@+id/linearLayout"
+            android:id="@+id/linearLayout_search_bookmark"
             android:layout_width="270dp"
             android:layout_height="60dp"
             android:background="@drawable/frame_style"
@@ -78,7 +78,7 @@
             android:clickable="true">>
 
             <TextView
-                android:id="@+id/textView5"
+                android:id="@+id/textView_search_bookmark"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/bookmark3"
@@ -95,7 +95,7 @@
             android:layout_weight="2" />
 
         <LinearLayout
-            android:id="@+id/linearLayout"
+            android:id="@+id/linearLayout_search_note"
             android:layout_width="270dp"
             android:layout_height="60dp"
             android:background="@drawable/frame_style"
@@ -103,7 +103,7 @@
             android:clickable="true">>
 
             <TextView
-                android:id="@+id/textView"
+                android:id="@+id/textView_search_note"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/note"
@@ -119,7 +119,7 @@
             android:layout_weight="2" />
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/textView_artart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="ART × ART"
