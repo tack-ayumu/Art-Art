@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-
-    <dimen name="btn_padding_default">4dp</dimen>
-    <dimen name="btn_padding_pressed">2dp</dimen>
-    <dimen name="btn_border">1dp</dimen>
-    <dimen name="btn_radius">12dp</dimen>
-
-</resources>
