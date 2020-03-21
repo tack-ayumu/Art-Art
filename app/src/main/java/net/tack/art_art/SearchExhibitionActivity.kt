@@ -20,16 +20,17 @@ class SearchExhibitionActivity : AppCompatActivity() {
         )
         spinner_area.adapter = arrayAdapter
 
+
+        //会期検索（日付検索）date-picker
         val calender = java.util.Calendar.getInstance()
         val year = calender.get(java.util.Calendar.YEAR)
         val month = calender.get(java.util.Calendar.MONTH)
         val day = calender.get(java.util.Calendar.DAY_OF_MONTH)
 
-        linearLayout_date.setOnClickListener {
+        textView_date.setOnClickListener {
             val dtp = DatePickerDialog(this,DatePickerDialog.OnDateSetListener{ view, y, m, d ->
-            }, year,month,day)
+                textView_date.text = "$y / $m / $d"}, year,month,day)
             dtp.show()
-            textView4.text = dtp.toString()
         }
 
 
