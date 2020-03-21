@@ -1,5 +1,6 @@
 package net.tack.art_art
 
+import android.app.DatePickerDialog
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
@@ -12,7 +13,31 @@ class SearchExhibitionActivity : AppCompatActivity() {
         setContentView(R.layout.activity_search_exhibition)
 
         //地域検索(現在地・全国・10エリア+47都道府県) リスト表示
-        val arrayAdapter = ArrayAdapter.createFromResource(this,R.array.area,android.R.layout.simple_spinner_item)
+        val arrayAdapter = ArrayAdapter.createFromResource(
+            this,
+            R.array.area,
+            android.R.layout.simple_spinner_item
+        )
         spinner_area.adapter = arrayAdapter
+
+        val calender = java.util.Calendar.getInstance()
+        val year = calender.get(java.util.Calendar.YEAR)
+        val month = calender.get(java.util.Calendar.MONTH)
+        val day = calender.get(java.util.Calendar.DAY_OF_MONTH)
+
+        linearLayout_date.setOnClickListener {
+            val dtp = DatePickerDialog(this,DatePickerDialog.OnDateSetListener{ view, y, m, d ->
+            }, year,month,day)
+            dtp.show()
+            textView4.text = dtp.toString()
+        }
+
+
+
+
+
     }
-}
+
+
+    }
+
