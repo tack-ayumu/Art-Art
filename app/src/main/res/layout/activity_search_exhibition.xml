@@ -19,7 +19,7 @@
             android:layout_weight="2" />
 
         <LinearLayout
-            android:id="@+id/linearLayout"
+            android:id="@+id/linearLayout_search_area"
             android:layout_width="310dp"
             android:layout_height="60dp"
             android:background="@drawable/frame_style"
@@ -29,12 +29,15 @@
                 android:id="@+id/imageView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:srcCompat="@drawable/area" />
+                app:srcCompat="@drawable/area"/>
 
             <Spinner
-                android:id="@+id/spinner2"
-                android:layout_width="270dp"
-                android:layout_height="60dp" />
+                android:id="@+id/spinner_area"
+                android:layout_width="200dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:spinnerMode="dropdown" />
 
         </LinearLayout>
 

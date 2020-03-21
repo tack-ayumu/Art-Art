@@ -11,7 +11,8 @@ class SearchExhibitionActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search_exhibition)
 
+        //地域検索(現在地・全国・10エリア+47都道府県) リスト表示
         val arrayAdapter = ArrayAdapter.createFromResource(this,R.array.area,android.R.layout.simple_spinner_item)
-        spinner2.adapter = arrayAdapter
+        spinner_area.adapter = arrayAdapter
     }
 }
