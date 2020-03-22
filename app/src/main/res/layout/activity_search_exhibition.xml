@@ -16,24 +16,48 @@
         <Space
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="2" />
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="美術展 検索"
+            android:textColor="#F44336"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
 
         <LinearLayout
             android:id="@+id/linearLayout"
-            android:layout_width="270dp"
+            android:layout_width="310dp"
             android:layout_height="60dp"
             android:background="@drawable/frame_style"
             android:clickable="true"
             android:gravity="center">
 
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/keyword" />
+
             <EditText
                 android:id="@+id/editText"
                 android:layout_width="200dp"
                 android:layout_height="60dp"
+                android:background="#00000000"
                 android:ems="10"
+                android:hint="@string/keyword"
                 android:inputType="textPersonName"
                 android:textAlignment="center"
-                android:textColor="#6B6969" />
+                android:textColor="#6B6969"
+                android:textSize="16sp" />
+
         </LinearLayout>
 
         <Space
@@ -108,17 +132,7 @@
             android:layout_height="60dp"
             android:background="@drawable/frame_style"
             android:gravity="center"
-            android:clickable="true">>
-
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/note"
-                android:gravity="center"
-                android:textColor="#6B6969"
-                android:textSize="24sp" />
-        </LinearLayout>
+            android:clickable="true"/>
 
         <Space
             android:layout_width="match_parent"
