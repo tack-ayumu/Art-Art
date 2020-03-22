@@ -3,6 +3,7 @@ package net.tack.art_art
 import android.app.DatePickerDialog
 import android.os.Bundle
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_search_exhibition.*
 
@@ -31,6 +32,16 @@ class SearchExhibitionActivity : AppCompatActivity() {
             val dtp = DatePickerDialog(this,DatePickerDialog.OnDateSetListener{ view, y, m, d ->
                 textView_date.text = "$y 年 ${m+1} 月 $d 日"}, year,month,day)
             dtp.show()
+        }
+
+        //「お気に入り」ボタン編集中の旨、toast通知
+        linearLayout_search_bookmark2.setOnClickListener {
+            Toast.makeText(this, "編集中です",Toast.LENGTH_SHORT).show()
+        }
+
+        //「履歴検索」ボタン編集中の旨、toast通知
+        linearLayout_search_history.setOnClickListener {
+            Toast.makeText(this, "編集中です",Toast.LENGTH_SHORT).show()
         }
 
 
