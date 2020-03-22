@@ -29,7 +29,7 @@ class SearchExhibitionActivity : AppCompatActivity() {
 
         textView_date.setOnClickListener {
             val dtp = DatePickerDialog(this,DatePickerDialog.OnDateSetListener{ view, y, m, d ->
-                textView_date.text = "$y / $m / $d"}, year,month,day)
+                textView_date.text = "$y 年 ${m+1} 月 $d 日"}, year,month,day)
             dtp.show()
         }
 
