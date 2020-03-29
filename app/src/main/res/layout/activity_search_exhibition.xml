@@ -152,13 +152,36 @@
             android:layout_height="wrap_content"
             android:layout_weight="2" />
 
+        <LinearLayout
+            android:id="@+id/linearLayout_go_search_exhibition"
+            android:layout_width="310dp"
+            android:layout_height="60dp"
+            android:background="@drawable/frame_style_go_search"
+            android:clickable="true"
+            android:gravity="center" >
+
+            <TextView
+                android:id="@+id/go_search_exhibition"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="美術展を検索する"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="2" />
+
         <TextView
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="ART × ART"
             android:textColor="#F44336"
-            android:textSize="48sp"
+            android:textSize="24sp"
             android:textStyle="bold" />
 
         <Space
