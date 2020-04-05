@@ -21,18 +21,38 @@ class SearchExhibitionActivity : AppCompatActivity() {
         )
         spinner_area.adapter = arrayAdapter
 
-
-        //会期検索（日付検索）date-picker
+       //会期検索（日付検索）date-picker
         val calender = java.util.Calendar.getInstance()
         val year = calender.get(java.util.Calendar.YEAR)
         val month = calender.get(java.util.Calendar.MONTH)
         val day = calender.get(java.util.Calendar.DAY_OF_MONTH)
+        val dtp = DatePickerDialog(this,DatePickerDialog.OnDateSetListener{ view, y, m, d ->
+            textView_year.text = "$y"
+            textView_month.text = "${m+1}"
+            textView_day.text = "$d"
+        when(m){
+            in 1..8 ->textView_month.text ="0${m+1}" }
+        when(d){
+            in 1..9 -> textView_day.text = "0$d"
+        }}, year, month, day)
 
-        textView_date.setOnClickListener {
-            val dtp = DatePickerDialog(this,DatePickerDialog.OnDateSetListener{ view, y, m, d ->
-                textView_date.text = "$y 年 ${m+1} 月 $d 日"}, year,month,day)
+        linearLayout_date.setOnClickListener {
             dtp.show()
         }
+
+        //選択したエリアを文字情報として取得する
+        val area = spinner_area.selectedItem
+        val select_area= area.toString()
+
+
+        go_search_exhibition.setOnClickListener {
+            textView2.text = " https://artscape.jp/exhibition/schedule/exhi_schedule_result.php=?" + select_area + "&Year="+
+                    textView_year.text.subSequence(0, 4)+"&Month="+textView_month.text.subSequence(0,2)+"&Day="+
+                    textView_day.text.subSequence(0,2)+"&search=&btn_submit=&f_submit=on"
+        }
+
+
+
 
         //「お気に入り」ボタン編集中の旨、toast通知
         linearLayout_search_bookmark2.setOnClickListener {
@@ -48,8 +68,12 @@ class SearchExhibitionActivity : AppCompatActivity() {
 
 
 
+
+
     }
 
 
     }
+
+
 

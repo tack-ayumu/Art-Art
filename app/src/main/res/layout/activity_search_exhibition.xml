@@ -109,15 +109,28 @@
                 app:srcCompat="@drawable/date" />
 
             <TextView
-                android:id="@+id/textView_date"
-                android:layout_width="200dp"
+                android:id="@+id/textView_year"
+                android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:gravity="center"
                 android:inputType="date"
-                android:text="日付を選択してください"
                 android:textColorLink="#6B6969"
                 android:textSize="12sp"
                 android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textView_month"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:gravity="center"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/textView_day"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:gravity="center"
+                android:textSize="12sp" />
 
         </LinearLayout>
 
@@ -179,7 +192,6 @@
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="ART × ART"
             android:textColor="#F44336"
             android:textSize="24sp"
             android:textStyle="bold" />
