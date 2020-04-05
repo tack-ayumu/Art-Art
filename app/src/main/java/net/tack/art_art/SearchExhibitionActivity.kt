@@ -40,15 +40,11 @@ class SearchExhibitionActivity : AppCompatActivity() {
             dtp.show()
         }
 
-        //選択したエリアを文字情報として取得する
-        val area = spinner_area.selectedItem
-        val select_area= area.toString()
-
 
         go_search_exhibition.setOnClickListener {
-            textView2.text = " https://artscape.jp/exhibition/schedule/exhi_schedule_result.php=?" + select_area + "&Year="+
+            textView2.text = " https://artscape.jp/exhibition/schedule/exhi_schedule_result.php=?" + spinner_area.selectedItem + "&Year="+
                     textView_year.text.subSequence(0, 4)+"&Month="+textView_month.text.subSequence(0,2)+"&Day="+
-                    textView_day.text.subSequence(0,2)+"&search=&btn_submit=&f_submit=on"
+                    textView_day.text.subSequence(0,2)+"&period=2&selorder=1&search=&btn_submit=&f_submit=on"
         }
 
 

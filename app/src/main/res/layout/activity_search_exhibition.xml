@@ -114,23 +114,45 @@
                 android:layout_height="60dp"
                 android:gravity="center"
                 android:inputType="date"
+                android:textColor="#6B6969"
                 android:textColorLink="#6B6969"
                 android:textSize="12sp"
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/textView_month"
-                android:layout_width="60dp"
+                android:id="@+id/textView_slash"
+                android:layout_width="20dp"
                 android:layout_height="60dp"
                 android:gravity="center"
+                android:text="／"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/textView_month"
+                android:layout_width="40dp"
+                android:layout_height="60dp"
+                android:gravity="center"
+                android:textColor="#6B6969"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textView_slash_2"
+                android:layout_width="20dp"
+                android:layout_height="60dp"
+                android:gravity="center"
+                android:text="／"
                 android:textSize="12sp" />
 
             <TextView
                 android:id="@+id/textView_day"
-                android:layout_width="60dp"
+                android:layout_width="40dp"
                 android:layout_height="60dp"
                 android:gravity="center"
-                android:textSize="12sp" />
+                android:textColor="#6B6969"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
 
         </LinearLayout>
 
