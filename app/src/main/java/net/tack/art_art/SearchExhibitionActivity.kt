@@ -40,7 +40,6 @@ class SearchExhibitionActivity : AppCompatActivity() {
             in 1..9 -> textView_day.text = "0"+ day.toString()
         }
 
-
         val dtp = DatePickerDialog(this,DatePickerDialog.OnDateSetListener{ view, y, m, d ->
             textView_year.text = "$y"
             textView_month.text = "${m+1}"
@@ -55,31 +54,35 @@ class SearchExhibitionActivity : AppCompatActivity() {
             dtp.show()
         }
 
-        fun selected_year(){
-
-            val selected_year = textView_year.text.toString().substring(0,4)
-
-        }
-
-
-
+        //「美術展を検索するボタン」を押す
         go_search_exhibition.setOnClickListener() {
+
+            //選択したエリアの情報を取得
             var selected_area = spinner_area.selectedItem.toString()
+
+            //【東北】【北関東】などのエリアについた括弧を外すためインデックスを使用してsubstringの処理をする
             val idx = spinner_area.selectedItemPosition
             when(idx){
-              3 -> selected_area = spinner_area.selectedItem.toString().substring(1,3)
+                0,1 -> selected_area = ""
+            }
+            when(selected_area.startsWith("【")){
+                true -> selected_area = spinner_area.selectedItem.toString().substring(1,selected_area.length-1)
             }
 
 
-            val selected_year = textView_year.text.toString().substring(0,4)
-            val selected_month = textView_month.text.toString().substring(0,2)
-            val selected_day = textView_day.text.toString().substring(0,2)
+            //urlを生成するため、選択した年月日をテキスト化
+            val selected_year = textView_year.text.toString()
+            val selected_month = textView_month.text.toString()
+            val selected_day = textView_day.text.toString()
+
+            //固定のurlの部分
             val urlArtscape1 = "https://artscape.jp/exhibition/schedule/exhi_schedule_result.php?pref="
             val urlArtscape2 = "&Year="
             val urlArtscape3 = "&Month="
             val urlArtscape4 = "&Day="
             val urlArtscape5 = "&period=2&selorder=1&search=&btn_submit=&f_submit=on"
 
+            //urlを生成してみる
             textView2.text = urlArtscape1 + selected_area + urlArtscape2 + selected_year + urlArtscape3 + selected_month+urlArtscape4 + selected_day + urlArtscape5
         }
 
