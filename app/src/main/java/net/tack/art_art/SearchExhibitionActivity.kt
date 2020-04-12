@@ -87,8 +87,6 @@ class SearchExhibitionActivity : AppCompatActivity() {
         }
 
 
-
-
         //「お気に入り」ボタン編集中の旨、toast通知
         linearLayout_search_bookmark2.setOnClickListener {
             Toast.makeText(this, "編集中です",Toast.LENGTH_SHORT).show()
