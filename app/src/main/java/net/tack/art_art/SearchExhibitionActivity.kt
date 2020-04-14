@@ -6,6 +6,10 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_search_exhibition.*
+import retrofit2.Call
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.http.Query
 
 class SearchExhibitionActivity : AppCompatActivity() {
 
@@ -101,6 +105,35 @@ class SearchExhibitionActivity : AppCompatActivity() {
 
 
 
+
+
+    }
+
+//    data class Artscape(val url:String)
+
+    interface ArtScape{
+        fun urlList(@Query("pref")pref: String,@Query("Year")Year:String,
+                           @Query("Month")Month:String,@Query("Day")Day:String,
+                           @Query("period")period:String,@Query("selorder")selorder:String,
+                           @Query("search")search:String,@Query("btn_submit")btn_submit:String,
+                           @Query("f_submit")f_submit:String):Call<List<String>>
+    }
+
+
+    object APIClient {
+        private const val BASE_URL = "https://artscape.jp/exhibition/schedule/exhi_schedule_result.php?"
+
+        private fun restClient() : Retrofit {
+            return Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
+        }
+
+//        fun fetchReposList() :Response<List<String>> {
+//            val service = restClient().create(ArtScape::class.java)
+//            return service.urlList(, "desc").execute()
+//        }
 
 
     }
