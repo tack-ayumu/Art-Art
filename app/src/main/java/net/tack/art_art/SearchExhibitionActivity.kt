@@ -2,14 +2,16 @@ package net.tack.art_art
 
 import android.app.DatePickerDialog
 import android.os.Bundle
+import android.util.Log
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_search_exhibition.*
 import retrofit2.Call
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.http.Query
+import retrofit2.Callback
+import retrofit2.Response
+
+
 
 class SearchExhibitionActivity : AppCompatActivity() {
 
@@ -88,7 +90,11 @@ class SearchExhibitionActivity : AppCompatActivity() {
 
             //urlを生成してみる
             textView2.text = urlArtscape1 + selected_area + urlArtscape2 + selected_year + urlArtscape3 + selected_month+urlArtscape4 + selected_day + urlArtscape5
+
+            searchMuseums()
         }
+
+
 
 
         //「お気に入り」ボタン編集中の旨、toast通知
@@ -101,45 +107,23 @@ class SearchExhibitionActivity : AppCompatActivity() {
             Toast.makeText(this, "編集中です",Toast.LENGTH_SHORT).show()
         }
 
+    }
 
+    fun searchMuseums() {
+        val apiClient = APIClient
+        apiClient.searchMuseums("", "2020", "04", "14", 2, 1, "test", "", "on").enqueue(object: Callback<String> {
+            override fun onFailure(call: Call<String>, t: Throwable) {
+                Log.d("FAILURE", t.message)
+            }
 
-
-
-
+            override fun onResponse(call: Call<String>, response: Response<String>) {
+                Log.d("RESPONSE", response.body())
+            }
+        })
+    }
 
     }
 
-//    data class Artscape(val url:String)
-
-    interface ArtScape{
-        fun urlList(@Query("pref")pref: String,@Query("Year")Year:String,
-                           @Query("Month")Month:String,@Query("Day")Day:String,
-                           @Query("period")period:String,@Query("selorder")selorder:String,
-                           @Query("search")search:String,@Query("btn_submit")btn_submit:String,
-                           @Query("f_submit")f_submit:String):Call<List<String>>
-    }
-
-
-    object APIClient {
-        private const val BASE_URL = "https://artscape.jp/exhibition/schedule/exhi_schedule_result.php?"
-
-        private fun restClient() : Retrofit {
-            return Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build()
-        }
-
-//        fun fetchReposList() :Response<List<String>> {
-//            val service = restClient().create(ArtScape::class.java)
-//            return service.urlList(, "desc").execute()
-//        }
-
-
-    }
-
-
-    }
 
 
 
