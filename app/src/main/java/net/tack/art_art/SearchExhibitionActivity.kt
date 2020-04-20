@@ -14,6 +14,10 @@ import retrofit2.Response
 
 
 class SearchExhibitionActivity : AppCompatActivity() {
+    lateinit var selected_area:String
+    lateinit var selected_year:String
+    lateinit var selected_month:String
+    lateinit var selected_day:String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,7 +68,7 @@ class SearchExhibitionActivity : AppCompatActivity() {
         go_search_exhibition.setOnClickListener() {
 
             //選択したエリアの情報を取得
-            var selected_area = spinner_area.selectedItem.toString()
+            selected_area = spinner_area.selectedItem.toString()
 
             //【東北】【北関東】などのエリアについた括弧を外すためインデックスを使用してsubstringの処理をする
             val idx = spinner_area.selectedItemPosition
@@ -77,9 +81,9 @@ class SearchExhibitionActivity : AppCompatActivity() {
 
 
             //urlを生成するため、選択した年月日をテキスト化
-            val selected_year = textView_year.text.toString()
-            val selected_month = textView_month.text.toString()
-            val selected_day = textView_day.text.toString()
+            selected_year = textView_year.text.toString()
+            selected_month = textView_month.text.toString()
+            selected_day = textView_day.text.toString()
 
             //固定のurlの部分
             val urlArtscape1 = "https://artscape.jp/exhibition/schedule/exhi_schedule_result.php?pref="
@@ -111,7 +115,7 @@ class SearchExhibitionActivity : AppCompatActivity() {
 
     fun searchMuseums() {
         val apiClient = APIClient
-        apiClient.searchMuseums("", "2020", "04", "14", 2, 1, "test", "", "on").enqueue(object: Callback<String> {
+        apiClient.searchMuseums(selected_area, selected_year, selected_month, selected_day, 2, 1, "", "", "on").enqueue(object: Callback<String> {
             override fun onFailure(call: Call<String>, t: Throwable) {
                 Log.d("FAILURE", t.message)
             }
