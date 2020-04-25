@@ -7,6 +7,7 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_search_exhibition.*
+import org.jsoup.Jsoup
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -98,9 +99,6 @@ class SearchExhibitionActivity : AppCompatActivity() {
             searchMuseums()
         }
 
-
-
-
         //「お気に入り」ボタン編集中の旨、toast通知
         linearLayout_search_bookmark2.setOnClickListener {
             Toast.makeText(this, "編集中です",Toast.LENGTH_SHORT).show()
@@ -121,13 +119,18 @@ class SearchExhibitionActivity : AppCompatActivity() {
             }
 
             override fun onResponse(call: Call<String>, response: Response<String>) {
+                val document = Jsoup.parse(response.body())
+                val exhiInfo = document.select("div.exhiInfo")
+                val title= exhiInfo[0].select("h3.headH3D").text()
                 Log.d("RESPONSE", response.body())
             }
+
+
         })
     }
 
+    
     }
 
 
-
-
+//https://artscape.jp/exhibition/schedule/exhi_schedule_result.php?pref=東北&Year=2020&Month=04&Day=22&period=2&selorder=1&search=&btn_submit=&f_submit=on
