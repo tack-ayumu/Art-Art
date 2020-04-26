@@ -121,9 +121,21 @@ class SearchExhibitionActivity : AppCompatActivity() {
             override fun onResponse(call: Call<String>, response: Response<String>) {
                 val document = Jsoup.parse(response.body())
                 val exhiInfo = document.select("div.exhiInfo")
-                val title= exhiInfo[0].select("h3.headH3D").text()
+                val title= exhiInfo.select("h3.headH3D").text()
+                val date = exhiInfo.select("p.exhiDate").text()
+                val nameOfmuseum = exhiInfo.select("a").text()
+
+//                for(numberJoupselect in exhiInfo.indices){
+//                    val title= exhiInfo[numberJoupselect].select("h3.headH3D").text()
+//                    val date = exhiInfo[numberJoupselect].select("exhiDate").text()
+//                    val nameOfmuseum = exhiInfo[numberJoupselect].select("infoList on").text()
+//                }
+
+//                val title= exhiInfo[0].select("h3.headH3D").text()
                 Log.d("RESPONSE", response.body())
             }
+
+
 
 
         })
@@ -131,6 +143,3 @@ class SearchExhibitionActivity : AppCompatActivity() {
 
     
     }
-
-
-//https://artscape.jp/exhibition/schedule/exhi_schedule_result.php?pref=東北&Year=2020&Month=04&Day=22&period=2&selorder=1&search=&btn_submit=&f_submit=on
