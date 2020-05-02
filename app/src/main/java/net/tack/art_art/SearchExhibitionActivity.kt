@@ -13,7 +13,6 @@ import retrofit2.Callback
 import retrofit2.Response
 
 
-
 class SearchExhibitionActivity : AppCompatActivity() {
     lateinit var selected_area:String
     lateinit var selected_year:String
@@ -119,20 +118,28 @@ class SearchExhibitionActivity : AppCompatActivity() {
             }
 
             override fun onResponse(call: Call<String>, response: Response<String>) {
-                val document = Jsoup.parse(response.body())
-                val exhiInfo = document.select("div.exhiInfo")
-                val title= exhiInfo.select("h3.headH3D").text()
-                val date = exhiInfo.select("p.exhiDate").text()
-                val nameOfmuseum = exhiInfo.select("a").text()
-
-//                for(numberJoupselect in exhiInfo.indices){
-//                    val title= exhiInfo[numberJoupselect].select("h3.headH3D").text()
-//                    val date = exhiInfo[numberJoupselect].select("exhiDate").text()
-//                    val nameOfmuseum = exhiInfo[numberJoupselect].select("infoList on").text()
+                document(response.body())
+//                val document = Jsoup.parse(response.body())
+//                val exhiInfo = document.select("div.exhiInfo")
+//
+//                for (i in exhiInfo.indices) {
+//                    val title = exhiInfo[i].select("h3.headH3D").text()
+//                    val date = exhiInfo[i].select("p.exhiDate").text()
+//                    val nameOfmuseum = exhiInfo[i].select("a").text()
 //                }
 
-//                val title= exhiInfo[0].select("h3.headH3D").text()
                 Log.d("RESPONSE", response.body())
+            }
+
+          private  fun document(searchresult:String?)  {
+                val document = Jsoup.parse(searchresult)
+                val exhiInfo = document.select("div.exhiInfo")
+
+                for (i in exhiInfo.indices) {
+                    val title = exhiInfo[i].select("h3.headH3D").text()
+                    val date = exhiInfo[i].select("p.exhiDate").text()
+                    val nameOfmuseum = exhiInfo[i].select("a").text()
+                }
             }
 
 
@@ -143,3 +150,4 @@ class SearchExhibitionActivity : AppCompatActivity() {
 
     
     }
+
