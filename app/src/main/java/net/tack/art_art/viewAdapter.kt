@@ -11,7 +11,7 @@ class ViewAdapter(private val list: List<RowModel>, private val listener: ListLi
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeViewHolder {
         Log.d("Adapter", "onCreateViewHolder")
-        val rowView: View = LayoutInflater.from(parent.context).inflate(R.layout.activity_exhibition_list, parent, false)
+        val rowView: View = LayoutInflater.from(parent.context).inflate(R.layout.exhibition_list, parent, false)
         return HomeViewHolder(rowView)
     }
 

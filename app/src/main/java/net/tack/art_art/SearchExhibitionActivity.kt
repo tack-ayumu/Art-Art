@@ -1,6 +1,7 @@
 package net.tack.art_art
 
 import android.app.DatePickerDialog
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.ArrayAdapter
@@ -18,6 +19,10 @@ class SearchExhibitionActivity : AppCompatActivity() {
     lateinit var selected_year:String
     lateinit var selected_month:String
     lateinit var selected_day:String
+
+    var titleData = ""
+    var dateData = ""
+    var nameOfMuseumData = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -112,42 +117,49 @@ class SearchExhibitionActivity : AppCompatActivity() {
 
     fun searchMuseums() {
         val apiClient = APIClient
-        apiClient.searchMuseums(selected_area, selected_year, selected_month, selected_day, 2, 1, "", "", "on").enqueue(object: Callback<String> {
+        apiClient.searchMuseums(selected_area, selected_year, selected_month, selected_day, 2, 1, "", "", "on")
+            .enqueue(object: Callback<String> {
             override fun onFailure(call: Call<String>, t: Throwable) {
                 Log.d("FAILURE", t.message)
             }
 
-            override fun onResponse(call: Call<String>, response: Response<String>) {
-                document(response.body())
-//                val document = Jsoup.parse(response.body())
-//                val exhiInfo = document.select("div.exhiInfo")
-//
-//                for (i in exhiInfo.indices) {
-//                    val title = exhiInfo[i].select("h3.headH3D").text()
-//                    val date = exhiInfo[i].select("p.exhiDate").text()
-//                    val nameOfmuseum = exhiInfo[i].select("a").text()
-//                }
+             //データを取得し、intentで次画面に検索結果を表示させる
+                override fun onResponse(call: Call<String>, response: Response<String>) {
+                val catchResult = searchResultData(response.body())
+//                 val intent =Intent(this@SearchExhibitionActivity, ExhibitionListActivity::class.java)
+//                 intent.putExtra("listDate",catchResult.toString())
+//                 intent.putExtra("Title",titleData)
+//                 intent.putExtra("date",dateData)
+//                 intent.putExtra("nameOfMuseum",nameOfMuseumData)
+//                 startActivity(intent)
 
-                Log.d("RESPONSE", response.body())
+                 Log.d("RESPONSE", response.body())
+                 Log.d("correct",response.body())
             }
 
-          private  fun document(searchresult:String?)  {
-                val document = Jsoup.parse(searchresult)
-                val exhiInfo = document.select("div.exhiInfo")
+        fun searchResultData(searchResult:String?)  {
+                val data = Jsoup.parse(searchResult)
+                val exhiInfo = data.select("div.exhiInfo")
 
                 for (i in exhiInfo.indices) {
-                    val title = exhiInfo[i].select("h3.headH3D").text()
-                    val date = exhiInfo[i].select("p.exhiDate").text()
-                    val nameOfmuseum = exhiInfo[i].select("a").text()
+                    titleData = exhiInfo[i].select("h3.headH3D").text()
+                    dateData = exhiInfo[i].select("p.exhiDate").text()
+                    nameOfMuseumData = exhiInfo[i].select("a").text()
                 }
+
+            val intent =Intent(this@SearchExhibitionActivity, ExhibitionListActivity::class.java)
+            intent.putExtra("Title",titleData)
+            intent.putExtra("date",dateData)
+            intent.putExtra("nameOfMuseum",nameOfMuseumData)
+            startActivity(intent)
+
             }
 
-
-
-
         })
+
     }
 
-    
+
+
     }
 

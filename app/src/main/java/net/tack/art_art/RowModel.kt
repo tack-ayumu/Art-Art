@@ -2,9 +2,9 @@ package net.tack.art_art
 
 class RowModel {
 
-    val title : String = ""
+    var title : String = ""
 
-    val date : String = ""
+    var date : String = ""
 
-    val nameOfMuseum : String = ""
+    var nameOfMuseum : String = ""
 }
