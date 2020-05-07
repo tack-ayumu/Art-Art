@@ -36,8 +36,23 @@ class SearchExhibitionActivity : AppCompatActivity() {
             android.R.layout.simple_spinner_item
         )
         spinner_area.adapter = arrayAdapter
+
         //選択したエリアの情報を取得
-        selected_area = spinner_area.selectedItem.toString()
+        fun fun_select_area (){
+            selected_area = spinner_area.selectedItem.toString()
+
+            //【東北】【北関東】などのエリアについた括弧を外すためインデックスを使用してsubstringの処理をする
+            val idx = spinner_area.selectedItemPosition
+            when (idx) {
+                0, 1 -> selected_area = ""
+            }
+            when (selected_area.startsWith("【")) {
+                true -> selected_area =
+                    spinner_area.selectedItem.toString().substring(1, selected_area.length - 1)
+            }
+        }
+
+
 
        //会期検索（日付検索）date-picker
         val calender = java.util.Calendar.getInstance()
@@ -71,39 +86,21 @@ class SearchExhibitionActivity : AppCompatActivity() {
             dtp.show()
         }
 
-        //「美術展を検索するボタン」を押す
-        linearLayout_go_search_exhibition.setOnClickListener() {
-
-
-            //【東北】【北関東】などのエリアについた括弧を外すためインデックスを使用してsubstringの処理をする
-            val idx = spinner_area.selectedItemPosition
-            when(idx){
-                0,1 -> selected_area = ""
-            }
-            when(selected_area.startsWith("【")){
-                true -> selected_area = spinner_area.selectedItem.toString().substring(1,selected_area.length-1)
-            }
-
-
-            //urlを生成するため、選択した年月日をテキスト化
+        //選択した年月日をテキスト化
+        fun fun_select_date() {
             selected_year = textView_year.text.toString()
             selected_month = textView_month.text.toString()
             selected_day = textView_day.text.toString()
+        }
 
-//            //固定のurlの部分
-//            val urlArtscape1 = "https://artscape.jp/exhibition/schedule/exhi_schedule_result.php?pref="
-//            val urlArtscape2 = "&Year="
-//            val urlArtscape3 = "&Month="
-//            val urlArtscape4 = "&Day="
-//            val urlArtscape5 = "&period=2&selorder=1&search=&btn_submit=&f_submit=on"
-//
-//            //urlを生成してみる
-//            textView2.text = urlArtscape1 + selected_area + urlArtscape2 + selected_year + urlArtscape3 + selected_month+urlArtscape4 + selected_day + urlArtscape5
 
+        //「美術展を検索するボタン」を押す
+        linearLayout_go_search_exhibition.setOnClickListener() {
+            fun_select_area()
+            fun_select_date()
             searchMuseums()
         }
 
-        fun
 
 
         //「お気に入り」ボタン編集中の旨、toast通知
