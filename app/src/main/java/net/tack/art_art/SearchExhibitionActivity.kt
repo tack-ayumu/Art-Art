@@ -53,7 +53,6 @@ class SearchExhibitionActivity : AppCompatActivity() {
         }
 
 
-
        //会期検索（日付検索）date-picker
         val calender = java.util.Calendar.getInstance()
         val year = calender.get(java.util.Calendar.YEAR)
@@ -100,7 +99,6 @@ class SearchExhibitionActivity : AppCompatActivity() {
             fun_select_date()
             searchMuseums()
         }
-
 
 
         //「お気に入り」ボタン編集中の旨、toast通知

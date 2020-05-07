@@ -27,11 +27,16 @@ class ExhibitionListActivity : AppCompatActivity() {
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = adapter
 
+        //recyclerViewに区切りの横ラインを入れる
         val itemDecoration = DividerItemDecoration(this, DividerItemDecoration.VERTICAL)
         recyclerView.addItemDecoration(itemDecoration)
 
-    }
+        recyclerView.setOnClickListener{
 
+
+        }
+
+    }
 
 
 
