@@ -3,6 +3,7 @@ package net.tack.art_art
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_exhibition_list.*
@@ -13,8 +14,10 @@ class ExhibitionListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_exhibition_list)
 
+        val catchData = intent.getSerializableExtra(EXTRA_RESULTS) as ArrayList<RowModel>
+
         val recyclerView = recyclerView_museumlist
-        val adapter = ViewAdapter(createDataList(), object : ViewAdapter.ListListener {
+        val adapter = ViewAdapter(catchData, object : ViewAdapter.ListListener {
             override fun onClickRow(tappedView: View, rowModel: RowModel) {
                 this.onClickRow(tappedView, rowModel)
             }
@@ -23,14 +26,13 @@ class ExhibitionListActivity : AppCompatActivity() {
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = adapter
-    }
 
-    private fun createDataList(): List<RowModel> {
-
-        val catchData = intent.getStringArrayListExtra(EXTRA_RESULTS)
-
+        val itemDecoration = DividerItemDecoration(this, DividerItemDecoration.VERTICAL)
+        recyclerView.addItemDecoration(itemDecoration)
 
     }
+
+
 
 
 

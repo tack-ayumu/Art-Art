@@ -36,7 +36,8 @@ class SearchExhibitionActivity : AppCompatActivity() {
             android.R.layout.simple_spinner_item
         )
         spinner_area.adapter = arrayAdapter
-
+        //選択したエリアの情報を取得
+        selected_area = spinner_area.selectedItem.toString()
 
        //会期検索（日付検索）date-picker
         val calender = java.util.Calendar.getInstance()
@@ -71,10 +72,8 @@ class SearchExhibitionActivity : AppCompatActivity() {
         }
 
         //「美術展を検索するボタン」を押す
-        go_search_exhibition.setOnClickListener() {
+        linearLayout_go_search_exhibition.setOnClickListener() {
 
-            //選択したエリアの情報を取得
-            selected_area = spinner_area.selectedItem.toString()
 
             //【東北】【北関東】などのエリアについた括弧を外すためインデックスを使用してsubstringの処理をする
             val idx = spinner_area.selectedItemPosition
@@ -91,18 +90,21 @@ class SearchExhibitionActivity : AppCompatActivity() {
             selected_month = textView_month.text.toString()
             selected_day = textView_day.text.toString()
 
-            //固定のurlの部分
-            val urlArtscape1 = "https://artscape.jp/exhibition/schedule/exhi_schedule_result.php?pref="
-            val urlArtscape2 = "&Year="
-            val urlArtscape3 = "&Month="
-            val urlArtscape4 = "&Day="
-            val urlArtscape5 = "&period=2&selorder=1&search=&btn_submit=&f_submit=on"
-
-            //urlを生成してみる
-            textView2.text = urlArtscape1 + selected_area + urlArtscape2 + selected_year + urlArtscape3 + selected_month+urlArtscape4 + selected_day + urlArtscape5
+//            //固定のurlの部分
+//            val urlArtscape1 = "https://artscape.jp/exhibition/schedule/exhi_schedule_result.php?pref="
+//            val urlArtscape2 = "&Year="
+//            val urlArtscape3 = "&Month="
+//            val urlArtscape4 = "&Day="
+//            val urlArtscape5 = "&period=2&selorder=1&search=&btn_submit=&f_submit=on"
+//
+//            //urlを生成してみる
+//            textView2.text = urlArtscape1 + selected_area + urlArtscape2 + selected_year + urlArtscape3 + selected_month+urlArtscape4 + selected_day + urlArtscape5
 
             searchMuseums()
         }
+
+        fun
+
 
         //「お気に入り」ボタン編集中の旨、toast通知
         linearLayout_search_bookmark2.setOnClickListener {

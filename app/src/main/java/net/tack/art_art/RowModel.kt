@@ -1,6 +1,8 @@
 package net.tack.art_art
 
-class RowModel {
+import java.io.Serializable
+
+class RowModel:Serializable {
 
     var title : String = ""
 
