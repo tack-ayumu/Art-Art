@@ -13,9 +13,19 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+
+        //美術展の検索
         linearLayout_search_exhibition.setOnClickListener {
             val intent = Intent(this@MainActivity, SearchExhibitionActivity::class.java)
             startActivity(intent)
+        }
+
+        //美術館の検索
+        linearLayout_search_museum.setOnClickListener{
+            val intent = Intent(this@MainActivity, SearchMuseumActivity::class.java)
+            startActivity(intent)
+
+
         }
 
         //「お気に入り」ボタン編集中の旨、toast通知

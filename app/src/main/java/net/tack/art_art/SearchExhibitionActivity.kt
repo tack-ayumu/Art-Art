@@ -15,9 +15,10 @@ import retrofit2.Response
 const val EXTRA_RESULTS = "EXTRA_RESULTS"
 
 lateinit var dataList:ArrayList<RowModel>
+lateinit var selected_area:String
+lateinit var arrayAdapter_area:ArrayAdapter<CharSequence>
 
 class SearchExhibitionActivity : AppCompatActivity() {
-    lateinit var selected_area:String
     lateinit var selected_year:String
     lateinit var selected_month:String
     lateinit var selected_day:String
@@ -29,13 +30,11 @@ class SearchExhibitionActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search_exhibition)
 
-        //地域検索(現在地・全国・10エリア+47都道府県) リスト表示
-        val arrayAdapter = ArrayAdapter.createFromResource(
-            this,
-            R.array.area,
-            android.R.layout.simple_spinner_item
+        //地域検索(現在地・全国・10エリア+47都道府県) リスト表示(スピナー）
+        arrayAdapter_area = ArrayAdapter.createFromResource(
+            this, R.array.area, android.R.layout.simple_spinner_item
         )
-        spinner_area.adapter = arrayAdapter
+        spinner_area.adapter = arrayAdapter_area
 
         //選択したエリアの情報を取得
         fun fun_select_area (){
@@ -97,7 +96,7 @@ class SearchExhibitionActivity : AppCompatActivity() {
         linearLayout_go_search_exhibition.setOnClickListener() {
             fun_select_area()
             fun_select_date()
-            searchMuseums()
+            searchExhibition()
         }
 
 
@@ -113,7 +112,7 @@ class SearchExhibitionActivity : AppCompatActivity() {
 
     }
 
-    fun searchMuseums() {
+    fun searchExhibition() {
         val apiClient = APIClient
         apiClient.searchMuseums(selected_area, selected_year, selected_month, selected_day, 2, 1, "", "", "on")
             .enqueue(object: Callback<String> {
@@ -121,7 +120,6 @@ class SearchExhibitionActivity : AppCompatActivity() {
                     Log.d("FAILURE", t.message)
                 }
 
-                //データを取得し、intentで次画面に検索結果を表示させる
                 override fun onResponse(call: Call<String>, response: Response<String>) {
                     document(response.body())
                     Log.d("RESPONSE", response.body())

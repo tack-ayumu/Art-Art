@@ -13,7 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ExhibitionListActivity"></activity>
+        <activity android:name=".SearchMuseumActivity"></activity>
+        <activity android:name=".ExhibitionListActivity" />
         <activity android:name=".SearchExhibitionActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>

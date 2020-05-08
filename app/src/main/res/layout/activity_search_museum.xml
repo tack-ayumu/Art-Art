@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/worholl"
+    tools:context=".SearchMuseumActivity">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/textView_title_search_exhibition"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="美術館 検索"
+            android:textColor="#F44336"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout_search_keyword"
+            android:layout_width="310dp"
+            android:layout_height="60dp"
+            android:background="@drawable/frame_style"
+            android:clickable="true"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/keyword" />
+
+            <EditText
+                android:id="@+id/editText_keyword"
+                android:layout_width="200dp"
+                android:layout_height="60dp"
+                android:background="#00000000"
+                android:ems="10"
+                android:hint="@string/keyword"
+                android:inputType="textPersonName"
+                android:textAlignment="center"
+                android:textColor="#6B6969"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="2" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout_search_area"
+            android:layout_width="310dp"
+            android:layout_height="60dp"
+            android:background="@drawable/frame_style"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/area" />
+
+            <Spinner
+                android:id="@+id/spinner_area"
+                android:layout_width="200dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:spinnerMode="dropdown"
+                android:textAlignment="center" />
+
+        </LinearLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="2" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout_gojyu_on"
+            android:layout_width="310dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            android:background="@drawable/frame_style"
+            android:clickable="true"
+            android:foregroundGravity="center"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:text="五十音"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <Spinner
+                android:id="@+id/spinner_gojyu_on"
+                android:layout_width="150dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:foregroundGravity="center"
+                android:gravity="center"
+                android:spinnerMode="dropdown"
+                android:textAlignment="center" />
+
+
+        </LinearLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="2" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout_search_bookmark2"
+            android:layout_width="310dp"
+            android:layout_height="60dp"
+            android:background="@drawable/frame_style"
+            android:clickable="true"
+            android:gravity="center" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="2" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout_search_history"
+            android:layout_width="310dp"
+            android:layout_height="60dp"
+            android:background="@drawable/frame_style"
+            android:clickable="true"
+            android:gravity="center" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="2" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout_go_search_exhibition"
+            android:layout_width="310dp"
+            android:layout_height="60dp"
+            android:background="@drawable/frame_style_go_search"
+            android:clickable="true"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/go_search_exhibition"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="美術展を検索する"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="3" />
+
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

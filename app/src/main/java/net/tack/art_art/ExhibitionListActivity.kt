@@ -31,15 +31,12 @@ class ExhibitionListActivity : AppCompatActivity() {
         val itemDecoration = DividerItemDecoration(this, DividerItemDecoration.VERTICAL)
         recyclerView.addItemDecoration(itemDecoration)
 
-        recyclerView.setOnClickListener{
+        recyclerView.setOnClickListener {
 
 
         }
 
     }
-
-
-
 
 
     fun onClickRow(tappedView: View, rowModel: RowModel) {
@@ -49,6 +46,5 @@ class ExhibitionListActivity : AppCompatActivity() {
             Snackbar.LENGTH_LONG
         ).setAction("Action", null).show()
     }
-
 
 }
