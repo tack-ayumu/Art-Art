@@ -77,6 +77,7 @@ class SearchMuseumActivity : AppCompatActivity() {
     private fun document(searchResult:String?)  {
         val document = Jsoup.parse(searchResult)
         val exhiInfo = document.select("div.exhiInfo")
+        val exhiInfo2 =document.select("div.mainColHeader")
 
         val dataList = ArrayList<RowModel>()
         for (i in exhiInfo.indices) {
@@ -88,9 +89,16 @@ class SearchMuseumActivity : AppCompatActivity() {
             }
             dataList.add(data)
         }
+
+        //検索件数を表示する（intentで受け渡す）
+        val NumberOfSearches = exhiInfo2.select("div.mainColHeading").text()
+
+
         val intent = Intent(this@SearchMuseumActivity,MuseumListActivity::class.java).apply {
                 putExtra("RESULTS",dataList)
+                putExtra("RESULTS2",NumberOfSearches)
             }
+
         startActivity(intent)
     }
 }

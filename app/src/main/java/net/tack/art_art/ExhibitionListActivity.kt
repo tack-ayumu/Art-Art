@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_exhibition_list.*
 
-//美術展（exhibition)の検索結果をRecyclerViewで表示する
+//1:美術展（exhibition)の検索結果  RecyclerViewで表示する
 
 class ExhibitionListActivity : AppCompatActivity() {
 
