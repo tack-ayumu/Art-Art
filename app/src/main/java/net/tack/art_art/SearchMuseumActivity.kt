@@ -58,6 +58,7 @@ class SearchMuseumActivity : AppCompatActivity() {
     }
 
 
+    //artscapeのURLを生成する
     fun searchMuseum() {
         val apiClient2 = APIClient2
         apiClient2.searchMuseums(selected_area, 1, "", "", "on")
@@ -65,7 +66,6 @@ class SearchMuseumActivity : AppCompatActivity() {
                 override fun onFailure(call: Call<String>, t: Throwable) {
                     Log.d("FAILURE", t.message)
                 }
-
                 override fun onResponse(call: Call<String>, response: Response<String>) {
                     document(response.body())
                     Log.d("RESPONSE", response.body())
@@ -74,11 +74,13 @@ class SearchMuseumActivity : AppCompatActivity() {
             })
     }
 
+    //artscape内の情報を抽出する
     private fun document(searchResult:String?)  {
         val document = Jsoup.parse(searchResult)
         val exhiInfo = document.select("div.exhiInfo")
         val exhiInfo2 =document.select("div.mainColHeader")
 
+        //美術館名、美術館の住所、開催中の美術展のタイトルを抽出する
         val dataList = ArrayList<RowModel>()
         for (i in exhiInfo.indices) {
             val data : RowModel = RowModel().also {
@@ -90,13 +92,13 @@ class SearchMuseumActivity : AppCompatActivity() {
             dataList.add(data)
         }
 
-        //検索件数を表示する（intentで受け渡す）
-        val NumberOfSearches = exhiInfo2.select("div.mainColHeading").text()
+        //検索件数を抽出する
+        val numberOfSearches = exhiInfo2.select("div.mainColHeading").text()
 
-
+        //intentで情報を引き渡す
         val intent = Intent(this@SearchMuseumActivity,MuseumListActivity::class.java).apply {
                 putExtra("RESULTS",dataList)
-                putExtra("RESULTS2",NumberOfSearches)
+                putExtra("RESULTS2",numberOfSearches)
             }
 
         startActivity(intent)

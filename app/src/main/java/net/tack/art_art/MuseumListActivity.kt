@@ -27,7 +27,7 @@ class MuseumListActivity : AppCompatActivity() {
 
         //画面上部に検索件数の表示
         val catchData2 =intent.getStringExtra("RESULTS2")
-        textView_NumberOfSearches.text = catchData2
+        textView_NumberOfSearches2.text = catchData2
 
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = LinearLayoutManager(this)

@@ -18,11 +18,10 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView10"
+        android:id="@+id/textView_NumberOfSearches1"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:gravity="center"
-        android:text="美術展　検索結果"
         android:textColor="#F44336"
         android:textSize="24sp"
         android:textStyle="bold"
@@ -38,7 +37,7 @@
         app:layout_constraintBottom_toTopOf="@id/recyclerView_exhibitionlist"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textView10" />
+        app:layout_constraintTop_toBottomOf="@id/textView_NumberOfSearches1" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView_exhibitionlist"

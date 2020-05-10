@@ -13,6 +13,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 const val EXTRA_RESULTS = "EXTRA_RESULTS"
+const val EXTRA_RESULTS2 = "EXTRA_RESULTS2"
 
 //1:美術展（exhibition) 検索  地域検索、日付検索の条件を指定「検索」ボタンを押してExhibitionListActivityへ
 
@@ -110,7 +111,7 @@ class SearchExhibitionActivity : AppCompatActivity() {
 
     }
 
-    //「美術展を検索する」buttonの操作（artscape参照）
+    //artscapeのURLを生成する
     fun searchExhibition() {
         val apiClient = APIClient
         apiClient.searchExhibition(selected_area, selected_year, selected_month, selected_day, 2, 1, "", "", "on")
@@ -118,7 +119,6 @@ class SearchExhibitionActivity : AppCompatActivity() {
                 override fun onFailure(call: Call<String>, t: Throwable) {
                     Log.d("FAILURE", t.message)
                 }
-
                 override fun onResponse(call: Call<String>, response: Response<String>) {
                     document(response.body())
                     Log.d("RESPONSE", response.body())
@@ -127,25 +127,38 @@ class SearchExhibitionActivity : AppCompatActivity() {
             })
     }
 
-        private fun document(searchResult:String?)  {
-                val document = Jsoup.parse(searchResult)
-                val exhiInfo = document.select("div.exhiInfo")
+    //artscape内の情報を抽出する
+    private fun document(searchResult:String?)  {
+        val document = Jsoup.parse(searchResult)
+        val exhiInfo = document.select("div.exhiInfo")
+        val exhiInfo2 =document.select("div.mainColHeader")
 
-               val dataList = ArrayList<RowModel>()
-                for (i in exhiInfo.indices) {
-                    val data : RowModel = RowModel().also {
-                        it.title = exhiInfo[i].select("h3.headH3D").text()
-                        it.date = exhiInfo[i].select("p.exhiDate").text()
-                        it.nameOfMuseum = exhiInfo[i].select("a").text()
-                    }
-                    dataList.add(data)
-                }
-              val intent =Intent(this@SearchExhibitionActivity, ExhibitionListActivity::class.java).apply {
-                  putExtra(EXTRA_RESULTS,dataList)
-              }
-            startActivity(intent)
+        //開催中の美術展のタイトル、会期、美術館名を抽出する
+        val dataList = ArrayList<RowModel>()
+        for (i in exhiInfo.indices) {
+            val data : RowModel = RowModel().also {
+                it.title = exhiInfo[i].select("h3.headH3D").text()
+                it.date = exhiInfo[i].select("p.exhiDate").text()
+                it.nameOfMuseum = exhiInfo[i].select("a").text()
             }
+            dataList.add(data)
         }
+
+        //検索件数を抽出する
+        val numberOfSearches = exhiInfo2.select("div.mainColHeading").text()
+
+
+        //intentで情報を引き渡す
+        val intent =Intent(this@SearchExhibitionActivity, ExhibitionListActivity::class.java).apply {
+            putExtra(EXTRA_RESULTS,dataList)
+            putExtra(EXTRA_RESULTS2,numberOfSearches)
+        }
+        
+        startActivity(intent)
+    }
+
+
+}
 
 
 
