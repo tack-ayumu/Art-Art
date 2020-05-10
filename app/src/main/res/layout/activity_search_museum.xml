@@ -7,7 +7,7 @@
     android:background="@drawable/worholl"
     tools:context=".SearchMuseumActivity">
 
-
+<!-- 2:美術館（museum)検索 -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -24,7 +24,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="美術館 検索"
-            android:textColor="#F44336"
+            android:textColor="@android:color/holo_blue_dark"
             android:textSize="24sp"
             android:textStyle="bold" />
 
@@ -80,7 +80,7 @@
                 app:srcCompat="@drawable/area" />
 
             <Spinner
-                android:id="@+id/spinner_area"
+                android:id="@+id/spinner_area2"
                 android:layout_width="200dp"
                 android:layout_height="60dp"
                 android:layout_gravity="center"
@@ -138,7 +138,8 @@
             android:layout_height="60dp"
             android:background="@drawable/frame_style"
             android:clickable="true"
-            android:gravity="center" />
+            android:gravity="center"
+            android:orientation="horizontal"/>
 
         <Space
             android:layout_width="match_parent"
@@ -151,7 +152,8 @@
             android:layout_height="60dp"
             android:background="@drawable/frame_style"
             android:clickable="true"
-            android:gravity="center" />
+            android:gravity="center"
+            android:orientation="horizontal"/>
 
         <Space
             android:layout_width="match_parent"
@@ -159,10 +161,10 @@
             android:layout_weight="2" />
 
         <LinearLayout
-            android:id="@+id/linearLayout_go_search_exhibition"
+            android:id="@+id/linearLayout_go_search_exhibition2"
             android:layout_width="310dp"
             android:layout_height="60dp"
-            android:background="@drawable/frame_style_go_search"
+            android:background="@drawable/frame_style_go_search2"
             android:clickable="true"
             android:gravity="center">
 
@@ -171,9 +173,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="美術展を検索する"
+                android:text="美術館を検索する"
                 android:textSize="18sp"
                 android:textStyle="bold" />
+
         </LinearLayout>
 
         <Space

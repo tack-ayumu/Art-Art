@@ -9,4 +9,9 @@ class RowModel:Serializable {
     var date : String = ""
 
     var nameOfMuseum : String = ""
+
+    var museumAddress : String = ""
 }
+
+
+

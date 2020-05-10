@@ -13,7 +13,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SearchMuseumActivity"></activity>
+        <activity android:name=".MuseumListActivity"></activity>
+        <activity android:name=".activity_museum_list" />
+        <activity android:name=".SearchMuseumActivity" />
         <activity android:name=".ExhibitionListActivity" />
         <activity android:name=".SearchExhibitionActivity" />
         <activity android:name=".MainActivity">

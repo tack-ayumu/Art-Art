@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/sample_monet"
-    tools:context=".ExhibitionListActivity">
+    android:background="@drawable/black"
+    tools:context=".MuseumListActivity">
 
-    <!--1:美術展（exhibition)の検索結果 -->
+    <!--2:美術館（museum)の検索結果 -->
     <Space
         android:id="@+id/space3"
         android:layout_width="match_parent"
@@ -22,8 +22,8 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:gravity="center"
-        android:text="美術展　検索結果"
-        android:textColor="#F44336"
+        android:text="美術館  検索結果"
+        android:textColor="@android:color/holo_blue_dark"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -35,13 +35,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        app:layout_constraintBottom_toTopOf="@id/recyclerView_exhibitionlist"
+        app:layout_constraintBottom_toTopOf="@id/recyclerView_museumlist"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textView10" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView_exhibitionlist"
+        android:id="@+id/recyclerView_museumlist"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="@id/space5"
@@ -57,7 +57,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/recyclerView_exhibitionlist" />
+        app:layout_constraintTop_toBottomOf="@id/recyclerView_museumlist" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

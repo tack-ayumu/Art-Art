@@ -7,6 +7,7 @@
     android:background="@drawable/doga"
     tools:context=".SearchExhibitionActivity">
 
+    <!-- 1:美術展（exhibition)検索 -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -167,7 +168,8 @@
             android:layout_height="60dp"
             android:background="@drawable/frame_style"
             android:clickable="true"
-            android:gravity="center" />
+            android:gravity="center"
+            android:orientation="horizontal"/>
 
         <Space
             android:layout_width="match_parent"
@@ -180,7 +182,8 @@
             android:layout_height="60dp"
             android:background="@drawable/frame_style"
             android:clickable="true"
-            android:gravity="center" />
+            android:gravity="center"
+            android:orientation="horizontal"/>
 
         <Space
             android:layout_width="match_parent"

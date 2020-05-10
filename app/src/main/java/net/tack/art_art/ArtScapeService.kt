@@ -4,6 +4,7 @@ import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query
 
+//美術展（exhibition)検索用
 interface ArtScapeService {
     @GET("exhibition/schedule/exhi_schedule_result.php")
     fun urlList(@Query("pref")pref: String, @Query("Year")Year:String,
