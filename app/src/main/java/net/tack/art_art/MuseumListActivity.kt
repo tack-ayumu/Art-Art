@@ -21,7 +21,7 @@ class MuseumListActivity : AppCompatActivity() {
         val recyclerView = recyclerView_museumlist
         val adapter = ViewAdapter2(catchData, object : ViewAdapter2.ListListener {
             override fun onClickRow(tappedView: View, rowModel: RowModel) {
-                this.onClickRow(tappedView, rowModel)
+//                this.onClickRow(tappedView, rowModel)
             }
         })
 

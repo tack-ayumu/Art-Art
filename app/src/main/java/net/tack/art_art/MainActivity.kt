@@ -25,7 +25,6 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this@MainActivity, SearchMuseumActivity::class.java)
             startActivity(intent)
 
-
         }
 
         //「お気に入り」ボタン編集中の旨、toast通知

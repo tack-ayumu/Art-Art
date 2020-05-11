@@ -48,7 +48,7 @@
                 app:srcCompat="@drawable/keyword" />
 
             <EditText
-                android:id="@+id/editText_keyword"
+                android:id="@+id/editText_keyword1"
                 android:layout_width="200dp"
                 android:layout_height="60dp"
                 android:background="#00000000"

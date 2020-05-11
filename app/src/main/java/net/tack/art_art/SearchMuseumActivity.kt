@@ -58,10 +58,10 @@ class SearchMuseumActivity : AppCompatActivity() {
     }
 
 
-    //artscapeのURLを生成する
+    //artscapeのURLを生成する ※editTextの処理は「キーワード検索」の反映
     fun searchMuseum() {
         val apiClient2 = APIClient2
-        apiClient2.searchMuseums(selected_area, 1, "", "", "on")
+        apiClient2.searchMuseums(selected_area, 1, editText_keyword2.text.toString(), "", "on")
             .enqueue(object : Callback<String> {
                 override fun onFailure(call: Call<String>, t: Throwable) {
                     Log.d("FAILURE", t.message)

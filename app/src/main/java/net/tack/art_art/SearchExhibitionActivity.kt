@@ -18,6 +18,7 @@ const val EXTRA_RESULTS2 = "EXTRA_RESULTS2"
 //1:美術展（exhibition) 検索  地域検索、日付検索の条件を指定「検索」ボタンを押してExhibitionListActivityへ
 
 class SearchExhibitionActivity : AppCompatActivity() {
+    lateinit var keyWord:String
     lateinit var selected_year:String
     lateinit var selected_month:String
     lateinit var selected_day:String
@@ -27,7 +28,9 @@ class SearchExhibitionActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search_exhibition)
 
-        //1-1：地域検索(現在地・全国・10エリア+47都道府県) リスト表示(スピナー）
+
+
+        //1-1:地域検索(現在地・全国・10エリア+47都道府県) リスト表示(スピナー）
             val arrayAdapter_area = ArrayAdapter.createFromResource(
                 this, R.array.area, android.R.layout.simple_spinner_item
             )
@@ -90,18 +93,18 @@ class SearchExhibitionActivity : AppCompatActivity() {
           }
 
 
-        //3：「お気に入り」ボタン編集中の旨、toast通知
+        //1-3：「お気に入り」ボタン編集中の旨、toast通知
         linearLayout_search_bookmark2.setOnClickListener {
             Toast.makeText(this, "編集中です",Toast.LENGTH_SHORT).show()
         }
 
-        //4：「履歴検索」ボタン編集中の旨、toast通知
+        //1-4：「履歴検索」ボタン編集中の旨、toast通知
         linearLayout_search_history.setOnClickListener {
             Toast.makeText(this, "編集中です",Toast.LENGTH_SHORT).show()
         }
 
 
-        //5：「美術展を検索する」を押す
+        //1-5：「美術展を検索する」を押す
         linearLayout_go_search_exhibition.setOnClickListener() {
             fun_select_area()
             fun_select_date()
@@ -111,10 +114,11 @@ class SearchExhibitionActivity : AppCompatActivity() {
 
     }
 
-    //artscapeのURLを生成する
+
+    //artscapeのURLを生成する ※editTextの処理は「キーワード検索」の反映
     fun searchExhibition() {
         val apiClient = APIClient
-        apiClient.searchExhibition(selected_area, selected_year, selected_month, selected_day, 2, 1, "", "", "on")
+        apiClient.searchExhibition(selected_area, selected_year, selected_month, selected_day, 2, 1, editText_keyword1.text.toString(), "", "on")
             .enqueue(object: Callback<String> {
                 override fun onFailure(call: Call<String>, t: Throwable) {
                     Log.d("FAILURE", t.message)
@@ -153,7 +157,7 @@ class SearchExhibitionActivity : AppCompatActivity() {
             putExtra(EXTRA_RESULTS,dataList)
             putExtra(EXTRA_RESULTS2,numberOfSearches)
         }
-        
+
         startActivity(intent)
     }
 
