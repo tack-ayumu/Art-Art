@@ -23,6 +23,10 @@ class ViewAdapter(private val list: ArrayList<RowModel>, private val listener: L
         holder.itemView.setOnClickListener {
             listener.onClickRow(it, list[position])
         }
+        holder.titleView.setOnClickListener {
+            list[position].urlOfMuseum
+        }
+
     }
 
     override fun getItemCount(): Int {
@@ -33,4 +37,7 @@ class ViewAdapter(private val list: ArrayList<RowModel>, private val listener: L
     interface ListListener {
         fun onClickRow(tappedView: View, rowModel: RowModel)
     }
+
+
 }
+

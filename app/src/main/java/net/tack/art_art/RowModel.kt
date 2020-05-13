@@ -11,6 +11,8 @@ class RowModel:Serializable {
     var nameOfMuseum : String = ""
 
     var museumAddress : String = ""
+
+    var urlOfMuseum : String = ""
 }
 
 

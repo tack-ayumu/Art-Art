@@ -4,12 +4,11 @@ import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
+const val BASE_URL = "https://artscape.jp/"
 
 //1:美術展（exhibition) の検索用
 
 object APIClient {
-    private const val BASE_URL = "https://artscape.jp/"
-
     private fun restClient() : Retrofit {
         return Retrofit.Builder()
             .baseUrl(BASE_URL)

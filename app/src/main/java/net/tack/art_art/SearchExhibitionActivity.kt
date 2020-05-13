@@ -137,13 +137,16 @@ class SearchExhibitionActivity : AppCompatActivity() {
         val exhiInfo = document.select("div.exhiInfo")
         val exhiInfo2 =document.select("div.mainColHeader")
 
-        //開催中の美術展のタイトル、会期、美術館名を抽出する
+        //開催中の美術展のタイトル、会期、美術館名、美術館情報に紐づくurlを抽出
         val dataList = ArrayList<RowModel>()
         for (i in exhiInfo.indices) {
             val data : RowModel = RowModel().also {
                 it.title = exhiInfo[i].select("h3.headH3D").text()
                 it.date = exhiInfo[i].select("p.exhiDate").text()
                 it.nameOfMuseum = exhiInfo[i].select("a").text()
+//                it.urlOfMuseum = exhiInfo[i].select("herf").text()
+                val elementsOfMuseum = exhiInfo[i].select("a")
+                it.urlOfMuseum = BASE_URL + elementsOfMuseum.attr("href")
             }
             dataList.add(data)
         }

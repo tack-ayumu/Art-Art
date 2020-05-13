@@ -18,6 +18,8 @@ class ExhibitionListActivity : AppCompatActivity() {
 
         val catchData = intent.getSerializableExtra(EXTRA_RESULTS) as ArrayList<RowModel>
 
+
+
         val recyclerView = recyclerView_exhibitionlist
         val adapter = ViewAdapter(catchData, object : ViewAdapter.ListListener {
             override fun onClickRow(tappedView: View, rowModel: RowModel) {
@@ -29,6 +31,8 @@ class ExhibitionListActivity : AppCompatActivity() {
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = adapter
 
+
+
         //画面上部に検索件数の表示
         val catchData2 =intent.getStringExtra(EXTRA_RESULTS2)
         textView_NumberOfSearches1.text = catchData2
@@ -38,6 +42,7 @@ class ExhibitionListActivity : AppCompatActivity() {
         recyclerView.addItemDecoration(itemDecoration)
 
         recyclerView.setOnClickListener {
+
 
         }
     }

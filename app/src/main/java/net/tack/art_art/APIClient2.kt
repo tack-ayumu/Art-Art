@@ -8,8 +8,6 @@ import retrofit2.converter.scalars.ScalarsConverterFactory
 //2:美術館(museum)の検索用
 
 object APIClient2 {
-    private const val BASE_URL = "https://artscape.jp/"
-
     private fun restClient() : Retrofit {
         return Retrofit.Builder()
             .baseUrl(BASE_URL)
