@@ -7,11 +7,13 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
 
-class ViewAdapter(private val list: ArrayList<RowModel>, private val listener: ListListener) : RecyclerView.Adapter<HomeViewHolder>() {
+class ViewAdapter(private val list: ArrayList<RowModel>, private val listener: ListListener) : RecyclerView.Adapter<HomeViewHolder>(){
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeViewHolder {
         Log.d("Adapter", "onCreateViewHolder")
-        val rowView: View = LayoutInflater.from(parent.context).inflate(R.layout.exhibition_list, parent, false)
+        val rowView: View =
+            LayoutInflater.from(parent.context).inflate(R.layout.exhibition_list, parent, false)
         return HomeViewHolder(rowView)
     }
 
@@ -21,13 +23,10 @@ class ViewAdapter(private val list: ArrayList<RowModel>, private val listener: L
         holder.dateView.text = list[position].date
         holder.nameOfMuseumView.text = list[position].nameOfMuseum
         holder.itemView.setOnClickListener {
-            listener.onClickRow(it, list[position])
+            listener.onClickRow(list[position].urlOfMuseum)
         }
-        holder.titleView.setOnClickListener {
-            list[position].urlOfMuseum
-        }
-
     }
+
 
     override fun getItemCount(): Int {
         Log.d("Adapter", "getItemCount")
@@ -35,9 +34,13 @@ class ViewAdapter(private val list: ArrayList<RowModel>, private val listener: L
     }
 
     interface ListListener {
-        fun onClickRow(tappedView: View, rowModel: RowModel)
+        fun onClickRow(urlOfMuseum:String)
+
     }
 
 
 }
+
+
+
 
