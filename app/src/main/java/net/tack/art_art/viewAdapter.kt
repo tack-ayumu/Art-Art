@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView
 
 class ViewAdapter(private val list: ArrayList<RowModel>, private val listener: ListListener) : RecyclerView.Adapter<HomeViewHolder>(){
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeViewHolder {
         Log.d("Adapter", "onCreateViewHolder")
         val rowView: View =
@@ -26,7 +25,6 @@ class ViewAdapter(private val list: ArrayList<RowModel>, private val listener: L
             listener.onClickRow(list[position].urlOfMuseum)
         }
     }
-
 
     override fun getItemCount(): Int {
         Log.d("Adapter", "getItemCount")

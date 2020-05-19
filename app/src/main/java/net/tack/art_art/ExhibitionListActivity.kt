@@ -3,13 +3,14 @@ package net.tack.art_art
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_exhibition_list.*
 import org.jsoup.Jsoup
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 //1:美術展（exhibition)の検索結果  RecyclerViewで表示する
 
@@ -32,9 +33,32 @@ class ExhibitionListActivity : AppCompatActivity() {
         val adapter = ViewAdapter(catchData, object : ViewAdapter.ListListener {
             override fun onClickRow(urlOfMuseum:String) {
                 Log.d("urlOfMuseum",urlOfMuseum)
-                searchData(urlOfMuseum)
+
+                //ArtScape内の「ミュージアム検索」のUrlを生成する
+                if (urlOfMuseum.startsWith("https://artscape.jp/mdb/")) {
+                    val id = urlOfMuseum.substring(24)
+
+                    val apiClient = APIClient3
+                    apiClient.searchMuseums(id)
+                        .enqueue(object : Callback<String> {
+                            override fun onFailure(call: Call<String>, t: Throwable) {
+                                Log.d("FAILURE", t.message)
+                            }
+
+                            override fun onResponse(
+                                call: Call<String>,
+                                response: Response<String>
+                            ) {
+                                searchData(response.body())
+                                Log.d("RESPONSE", response.body())
+                                Log.d("correct", response.body())
+                            }
+                        })
+                }
             }
         })
+
+
 
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = LinearLayoutManager(this)
@@ -51,16 +75,10 @@ class ExhibitionListActivity : AppCompatActivity() {
     }
 
 
-    fun onClickRow(tappedView: View, rowModel: RowModel) {
-        Snackbar.make(
-            tappedView,
-            "Replace with your own action tapped ${rowModel.title}",
-            Snackbar.LENGTH_LONG
-        ).setAction("Action", null).show()
-    }
 
-    private fun searchData(url:String){
-        val document = Jsoup.connect(url).get()
+    //ArtScape内の「ミュージアム検索」のWEBSITEからデータを取得する
+    private fun searchData(searchResult:String?){
+        val document = Jsoup.parse(searchResult)
 
         //美術館名の取得
         dataOfMuseumName = document.select("div.mainColHeading").text()

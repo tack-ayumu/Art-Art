@@ -10,7 +10,7 @@ import retrofit2.converter.scalars.ScalarsConverterFactory
 object APIClient2 {
     private fun restClient() : Retrofit {
         return Retrofit.Builder()
-            .baseUrl(BASE_URL)
+            .baseUrl("https://artscape.jp/")
             .addConverterFactory(ScalarsConverterFactory.create())
             .addConverterFactory(GsonConverterFactory.create())
             .build()
@@ -20,7 +20,4 @@ object APIClient2 {
         val service = restClient().create(ArtScapeService2::class.java)
         return service.urlList(pref,selorder, search, btn_submit, f_submit)
     }
-
-
-
 }
