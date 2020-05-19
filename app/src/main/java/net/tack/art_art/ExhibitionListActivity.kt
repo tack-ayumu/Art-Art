@@ -26,7 +26,6 @@ class ExhibitionListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_exhibition_list)
 
-
         val catchData = intent.getSerializableExtra(EXTRA_RESULTS) as ArrayList<RowModel>
 
         val recyclerView = recyclerView_exhibitionlist
@@ -58,8 +57,6 @@ class ExhibitionListActivity : AppCompatActivity() {
             }
         })
 
-
-
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = adapter
@@ -79,9 +76,10 @@ class ExhibitionListActivity : AppCompatActivity() {
     //ArtScape内の「ミュージアム検索」のWEBSITEからデータを取得する
     private fun searchData(searchResult:String?){
         val document = Jsoup.parse(searchResult)
+        val moreSearch =document.select("div.mainColHeader")
 
         //美術館名の取得
-        dataOfMuseumName = document.select("div.mainColHeading").text()
+        dataOfMuseumName = moreSearch.select("div.mainColHeading").text()
 
         //美術館の郵便番号の取得
         dataOfAddressNumber = document.select("p.zip").text()

@@ -36,7 +36,6 @@ class ViewAdapter(private val list: ArrayList<RowModel>, private val listener: L
 
     }
 
-
 }
 
 
