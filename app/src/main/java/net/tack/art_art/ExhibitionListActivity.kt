@@ -21,6 +21,8 @@ class ExhibitionListActivity : AppCompatActivity() {
     lateinit var dataOfAddress:String
     lateinit var dataOftelNumber:String
     lateinit var dataOfMuseumUrl:String
+    lateinit var dataOfImage:String
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -77,6 +79,7 @@ class ExhibitionListActivity : AppCompatActivity() {
     private fun searchData(searchResult:String?){
         val document = Jsoup.parse(searchResult)
         val moreSearch =document.select("div.mainColHeader")
+        val imageSearch =document.select("div.imageArea")
 
         //美術館名の取得
         dataOfMuseumName = moreSearch.select("div.mainColHeading").text()
@@ -95,12 +98,16 @@ class ExhibitionListActivity : AppCompatActivity() {
         val elementsOfUrlMuseum2 = elementsOfUrlMuseum.select("a")
         dataOfMuseumUrl = elementsOfUrlMuseum2.attr("href")
 
+        //美術館の画像
+        dataOfImage = "https://artscape.jp" + imageSearch.select("img").attr("src")
+
         val intent = Intent(this@ExhibitionListActivity, MuseumInfo::class.java)
         intent.putExtra("detail1", dataOfMuseumName)
         intent.putExtra("detail2", dataOfAddressNumber)
         intent.putExtra("detail3", dataOfAddress)
         intent.putExtra("detail4", dataOftelNumber)
         intent.putExtra("detail5", dataOfMuseumUrl)
+        intent.putExtra("detail6",dataOfImage)
 
         startActivity(intent)
     }
