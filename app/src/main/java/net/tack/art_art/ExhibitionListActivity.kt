@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_exhibition_list.*
+import kotlinx.android.synthetic.main.exhibition_list.*
 import org.jsoup.Jsoup
 import retrofit2.Call
 import retrofit2.Callback
@@ -22,7 +23,6 @@ class ExhibitionListActivity : AppCompatActivity() {
     lateinit var dataOftelNumber:String
     lateinit var dataOfMuseumUrl:String
     lateinit var dataOfImage:String
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -70,6 +70,11 @@ class ExhibitionListActivity : AppCompatActivity() {
         //recyclerViewに区切りの横ラインを入れる
         val itemDecoration = DividerItemDecoration(this, DividerItemDecoration.VERTICAL)
         recyclerView.addItemDecoration(itemDecoration)
+
+        imageView_bookMark.setOnClickListener{
+            imageView_bookMark.setImageResource(R.drawable.bookmarkstar)
+
+        }
 
     }
 

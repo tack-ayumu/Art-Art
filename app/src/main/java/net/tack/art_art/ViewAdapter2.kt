@@ -21,7 +21,7 @@ class ViewAdapter2(private val list: ArrayList<RowModel>, private val listener: 
         holder.museumAddresView.text = list[position].museumAddress
         holder.titleView2.text = list[position].title
         holder.itemView.setOnClickListener {
-            listener.onClickRow(it, list[position])
+            listener.onClickRow(list[position].urlOfMuseum)
         }
     }
 
@@ -31,6 +31,6 @@ class ViewAdapter2(private val list: ArrayList<RowModel>, private val listener: 
     }
 
     interface ListListener {
-        fun onClickRow(tappedView: View, rowModel: RowModel)
+        fun onClickRow(urlOfMuseum:String)
     }
 }

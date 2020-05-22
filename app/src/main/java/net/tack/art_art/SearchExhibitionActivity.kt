@@ -144,7 +144,6 @@ class SearchExhibitionActivity : AppCompatActivity() {
                 it.title = exhiInfo[i].select("h3.headH3D").text()
                 it.date = exhiInfo[i].select("p.exhiDate").text()
                 it.nameOfMuseum = exhiInfo[i].select("a").text()
-//                it.urlOfMuseum = exhiInfo[i].select("herf").text()
                 val elementsOfMuseum = exhiInfo[i].select("a")
                 it.urlOfMuseum = "https://artscape.jp" + elementsOfMuseum.attr("href")
             }

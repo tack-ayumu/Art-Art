@@ -87,6 +87,8 @@ class SearchMuseumActivity : AppCompatActivity() {
                 it.nameOfMuseum = exhiInfo[i].select("a").text()
                 it.museumAddress = exhiInfo[i].select("p.mdbAddress").text()
                 it.title = exhiInfo[i].select("span.detail").text()
+                val elementsOfMuseum = exhiInfo[i].select("a")
+                it.urlOfMuseum = "https://artscape.jp" + elementsOfMuseum.attr("href")
             }
             dataList.add(data)
         }

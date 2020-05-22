@@ -1,16 +1,27 @@
 package net.tack.art_art
 
+import android.content.Intent
 import android.os.Bundle
-import android.view.View
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_museum_list.*
+import org.jsoup.Jsoup
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 //2:美術館(museum)の検索結果  RecyclerViewで表示する
 class MuseumListActivity : AppCompatActivity() {
+
+    lateinit var dataOfMuseumName:String
+    lateinit var dataOfAddressNumber:String
+    lateinit var dataOfAddress:String
+    lateinit var dataOftelNumber:String
+    lateinit var dataOfMuseumUrl:String
+    lateinit var dataOfImage:String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,8 +31,30 @@ class MuseumListActivity : AppCompatActivity() {
         val catchData = intent.getSerializableExtra("RESULTS") as ArrayList<RowModel>
         val recyclerView = recyclerView_museumlist
         val adapter = ViewAdapter2(catchData, object : ViewAdapter2.ListListener {
-            override fun onClickRow(tappedView: View, rowModel: RowModel) {
-//                this.onClickRow(tappedView, rowModel)
+            override fun onClickRow(urlOfMuseum:String) {
+                Log.d("urlOfMuseum",urlOfMuseum)
+
+                //ArtScape内の「ミュージアム検索」のUrlを生成する
+                if (urlOfMuseum.startsWith("https://artscape.jp/mdb/")) {
+                    val id = urlOfMuseum.substring(24)
+
+                    val apiClient = APIClient3
+                    apiClient.searchMuseums(id)
+                        .enqueue(object : Callback<String> {
+                            override fun onFailure(call: Call<String>, t: Throwable) {
+                                Log.d("FAILURE", t.message)
+                            }
+
+                            override fun onResponse(
+                                call: Call<String>,
+                                response: Response<String>
+                            ) {
+                                searchData(response.body())
+                                Log.d("RESPONSE", response.body())
+                                Log.d("correct", response.body())
+                            }
+                        })
+                }
             }
         })
 
@@ -37,19 +70,45 @@ class MuseumListActivity : AppCompatActivity() {
         val itemDecoration = DividerItemDecoration(this, DividerItemDecoration.VERTICAL)
         recyclerView.addItemDecoration(itemDecoration)
 
-        recyclerView.setOnClickListener {
-
-
-        }
 
     }
 
 
-    fun onClickRow(tappedView: View, rowModel:RowModel) {
-        Snackbar.make(
-            tappedView,
-            "Replace with your own action tapped ${rowModel.title}",
-            Snackbar.LENGTH_LONG
-        ).setAction("Action", null).show()
+    //ArtScape内の「ミュージアム検索」のWEBSITEからデータを取得する
+    private fun searchData(searchResult:String?){
+        val document = Jsoup.parse(searchResult)
+        val moreSearch =document.select("div.mainColHeader")
+        val imageSearch =document.select("div.imageArea")
+
+        //美術館名の取得
+        dataOfMuseumName = moreSearch.select("div.mainColHeading").text()
+
+        //美術館の郵便番号の取得
+        dataOfAddressNumber = document.select("p.zip").text()
+
+        //美術館の住所の取得
+        dataOfAddress = document.select("p.address").text()
+
+        //美術館の電話番号の取得
+        dataOftelNumber = document.select("p.tel").text()
+
+        //美術館の公式ウェブサイトのurl
+        val elementsOfUrlMuseum = document.select("ul.boxLinkC")
+        val elementsOfUrlMuseum2 = elementsOfUrlMuseum.select("a")
+        dataOfMuseumUrl = elementsOfUrlMuseum2.attr("href")
+
+        //美術館の画像
+        dataOfImage = "https://artscape.jp" + imageSearch.select("img").attr("src")
+
+        val intent = Intent(this@MuseumListActivity, MuseumInfo::class.java)
+        intent.putExtra("detail1", dataOfMuseumName)
+        intent.putExtra("detail2", dataOfAddressNumber)
+        intent.putExtra("detail3", dataOfAddress)
+        intent.putExtra("detail4", dataOftelNumber)
+        intent.putExtra("detail5", dataOfMuseumUrl)
+        intent.putExtra("detail6",dataOfImage)
+
+        startActivity(intent)
     }
 }
+
