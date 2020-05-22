@@ -12,5 +12,6 @@ class HomeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
 
     val nameOfMuseumView: TextView = itemView.findViewById(R.id.textView_nameOfMuseum)
 
+//    val favoriteIcon :ImageView = itemView.findViewWithTag(R.id.imageView_bookMark1)
 
 }

@@ -24,6 +24,12 @@ class ViewAdapter(private val list: ArrayList<RowModel>, private val listener: L
         holder.itemView.setOnClickListener {
             listener.onClickRow(list[position].urlOfMuseum)
         }
+//        holder.favoriteIcon.setImageResource(R.drawable.bookmarkstar)
+//
+//        holder.favoriteIcon.setOnClickListener{
+//            listener.onClickFavorite()
+//        }
+
     }
 
     override fun getItemCount(): Int {
@@ -33,8 +39,14 @@ class ViewAdapter(private val list: ArrayList<RowModel>, private val listener: L
 
     interface ListListener {
         fun onClickRow(urlOfMuseum:String)
-
     }
+
+
+    interface favoriteIconListener{
+        fun onClickFavoriteIcon(sFavorite: Boolean, data: RowModel)
+    }
+
+
 
 }
 

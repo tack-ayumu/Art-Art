@@ -43,9 +43,11 @@
                     android:layout_weight="1"/>
 
                 <ImageView
-                    android:id="@+id/imageView_bookMark"
+                    android:id="@+id/imageView_bookMark1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:onClick="clickImage"
                     app:srcCompat="@drawable/defaultstar" />
 
         </LinearLayout>

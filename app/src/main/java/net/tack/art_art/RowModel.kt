@@ -13,6 +13,8 @@ class RowModel:Serializable {
     var museumAddress : String = ""
 
     var urlOfMuseum : String = ""
+
+    var isFavorite: Boolean = false
 }
 
 
