@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import io.realm.Realm
-
+import io.realm.RealmResults
 
 
 class ViewAdapter(private val list: ArrayList<RowModel>, private val listener: ListListener) : RecyclerView.Adapter<HomeViewHolder>(){
@@ -47,7 +47,16 @@ class ViewAdapter(private val list: ArrayList<RowModel>, private val listener: L
         holder.favoriteIcon2.setOnClickListener{
             holder.favoriteIcon.visibility = View.VISIBLE
             holder.favoriteIcon2.visibility = View.GONE
-//            listener.onClickFavoriteIcon()
+
+            realm.beginTransaction()
+
+            val results:RealmResults<RowModel> = realm.where(RowModel::class.java).findAll()
+            val selectDB = results.get(position)
+
+            selectDB?.deleteFromRealm()
+            realm.commitTransaction()
+
+
         }
 
 
