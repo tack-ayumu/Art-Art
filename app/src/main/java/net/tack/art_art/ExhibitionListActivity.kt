@@ -6,6 +6,7 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import io.realm.Realm
 import kotlinx.android.synthetic.main.activity_exhibition_list.*
 import org.jsoup.Jsoup
 import retrofit2.Call
@@ -22,12 +23,16 @@ class ExhibitionListActivity : AppCompatActivity() {
     lateinit var dataOftelNumber:String
     lateinit var dataOfMuseumUrl:String
     lateinit var dataOfImage:String
+    lateinit var realm:Realm
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_exhibition_list)
 
         val catchData = intent.getSerializableExtra(EXTRA_RESULTS) as ArrayList<RowModel>
+
+        //realmの初期化
+        realm = Realm.getDefaultInstance()
 
         val recyclerView = recyclerView_exhibitionlist
         val adapter = ViewAdapter(catchData, object : ViewAdapter.ListListener {
@@ -69,6 +74,12 @@ class ExhibitionListActivity : AppCompatActivity() {
         //recyclerViewに区切りの横ラインを入れる
         val itemDecoration = DividerItemDecoration(this, DividerItemDecoration.VERTICAL)
         recyclerView.addItemDecoration(itemDecoration)
+
+    }
+
+    override fun onPause() {
+        super.onPause()
+        realm.close()
 
     }
 

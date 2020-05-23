@@ -50,6 +50,16 @@
                     android:onClick="clickImage"
                     app:srcCompat="@drawable/defaultstar" />
 
+                <ImageView
+                    android:id="@+id/imageView_bookMark3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:onClick="clickImage"
+                    app:srcCompat="@drawable/bookmarkstar"
+                    android:visibility="gone"/>
+
+
         </LinearLayout>
 
 

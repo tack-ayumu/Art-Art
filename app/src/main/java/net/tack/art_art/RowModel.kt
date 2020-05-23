@@ -1,8 +1,9 @@
 package net.tack.art_art
 
+import io.realm.RealmObject
 import java.io.Serializable
 
-class RowModel:Serializable {
+open class RowModel:Serializable,RealmObject(){
 
     var title : String = ""
 
@@ -14,7 +15,8 @@ class RowModel:Serializable {
 
     var urlOfMuseum : String = ""
 
-    var isFavorite: Boolean = false
+//    var isFavorite: Boolean = false
+
 }
 
 
