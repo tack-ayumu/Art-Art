@@ -34,6 +34,13 @@ class ExhibitionListActivity : AppCompatActivity() {
         //realmの初期化
         realm = Realm.getDefaultInstance()
 
+        for (data in catchData) {
+            val dataInRealm = realm.where(RowModel::class.java).equalTo("title", data.title).findFirst()
+            if (dataInRealm != null) {
+                data.isFavorite = true
+            }
+        }
+
         val recyclerView = recyclerView_exhibitionlist
         val adapter = ViewAdapter(catchData, object : ViewAdapter.ListListener {
             override fun onClickRow(urlOfMuseum:String) {
@@ -60,6 +67,19 @@ class ExhibitionListActivity : AppCompatActivity() {
                             }
                         })
                 }
+            }
+
+            override fun onClickFavoriteIcon(isFavorite: Boolean, data: RowModel) {
+                realm.beginTransaction()
+                if (isFavorite) {
+                    realm.copyToRealm(data)
+                } else {
+                    val dataInRealm = realm.where(RowModel::class.java).equalTo("title", data.title).findFirst()
+                    if (dataInRealm != null) {
+                        dataInRealm.deleteFromRealm()
+                    }
+                }
+                realm.commitTransaction()
             }
         })
 

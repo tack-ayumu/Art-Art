@@ -15,9 +15,10 @@ open class RowModel:Serializable,RealmObject(){
 
     var urlOfMuseum : String = ""
 
-//    var isFavorite: Boolean = false
+    var isFavorite: Boolean = false
 
 }
+
 
 
 
