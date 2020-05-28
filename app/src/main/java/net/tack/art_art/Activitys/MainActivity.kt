@@ -1,10 +1,11 @@
-package net.tack.art_art
+package net.tack.art_art.Activitys
 
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
+import net.tack.art_art.R
 
 
 class MainActivity : AppCompatActivity() {

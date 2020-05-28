@@ -1,4 +1,4 @@
-package net.tack.art_art
+package net.tack.art_art.Activitys
 
 import android.app.DatePickerDialog
 import android.content.Intent
@@ -8,6 +8,9 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_search_exhibition.*
+import net.tack.art_art.API.APIClient
+import net.tack.art_art.R
+import net.tack.art_art.RowModel.RowModel
 import org.jsoup.Jsoup
 import retrofit2.Call
 import retrofit2.Callback
@@ -140,7 +143,8 @@ class SearchExhibitionActivity : AppCompatActivity() {
         //開催中の美術展のタイトル、会期、美術館名、美術館情報に紐づくurlを抽出
         val dataList = ArrayList<RowModel>()
         for (i in exhiInfo.indices) {
-            val data : RowModel = RowModel().also {
+            val data : RowModel = RowModel()
+                .also {
                 it.title = exhiInfo[i].select("h3.headH3D").text()
                 it.date = exhiInfo[i].select("p.exhiDate").text()
                 it.nameOfMuseum = exhiInfo[i].select("a").text()

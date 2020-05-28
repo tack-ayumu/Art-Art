@@ -1,9 +1,10 @@
-package net.tack.art_art
+package net.tack.art_art.VIewHolder
 
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import net.tack.art_art.R
 
 class HomeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
 

@@ -1,4 +1,4 @@
-package net.tack.art_art
+package net.tack.art_art.Interface
 
 import retrofit2.Call
 import retrofit2.http.GET

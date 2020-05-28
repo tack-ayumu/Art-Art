@@ -1,4 +1,4 @@
-package net.tack.art_art
+package net.tack.art_art.RowModel
 
 import io.realm.RealmObject
 import java.io.Serializable

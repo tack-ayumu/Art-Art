@@ -1,11 +1,12 @@
-package net.tack.art_art
+package net.tack.art_art.Activitys
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import coil.api.load
 import kotlinx.android.synthetic.main.activity_museum_info.*
+import net.tack.art_art.R
 
-class MuseumInfo : AppCompatActivity() {
+class MuseumInfoActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

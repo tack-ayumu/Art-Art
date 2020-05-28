@@ -1,4 +1,4 @@
-package net.tack.art_art
+package net.tack.art_art.Activitys
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,6 +7,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_museum_list.*
+import net.tack.art_art.API.APIClient3
+import net.tack.art_art.R
+import net.tack.art_art.RowModel.RowModel
+import net.tack.art_art.Adapter.ViewAdapter2
 import org.jsoup.Jsoup
 import retrofit2.Call
 import retrofit2.Callback
@@ -30,33 +34,35 @@ class MuseumListActivity : AppCompatActivity() {
         //検索結果（リスト表示）
         val catchData = intent.getSerializableExtra("RESULTS") as ArrayList<RowModel>
         val recyclerView = recyclerView_museumlist
-        val adapter = ViewAdapter2(catchData, object : ViewAdapter2.ListListener {
-            override fun onClickRow(urlOfMuseum:String) {
-                Log.d("urlOfMuseum",urlOfMuseum)
+        val adapter = ViewAdapter2(
+            catchData,
+            object : ViewAdapter2.ListListener {
+                override fun onClickRow(urlOfMuseum: String) {
+                    Log.d("urlOfMuseum", urlOfMuseum)
 
-                //ArtScape内の「ミュージアム検索」のUrlを生成する
-                if (urlOfMuseum.startsWith("https://artscape.jp/mdb/")) {
-                    val id = urlOfMuseum.substring(24)
+                    //ArtScape内の「ミュージアム検索」のUrlを生成する
+                    if (urlOfMuseum.startsWith("https://artscape.jp/mdb/")) {
+                        val id = urlOfMuseum.substring(24)
 
-                    val apiClient = APIClient3
-                    apiClient.searchMuseums(id)
-                        .enqueue(object : Callback<String> {
-                            override fun onFailure(call: Call<String>, t: Throwable) {
-                                Log.d("FAILURE", t.message)
-                            }
+                        val apiClient = APIClient3
+                        apiClient.searchMuseums(id)
+                            .enqueue(object : Callback<String> {
+                                override fun onFailure(call: Call<String>, t: Throwable) {
+                                    Log.d("FAILURE", t.message)
+                                }
 
-                            override fun onResponse(
-                                call: Call<String>,
-                                response: Response<String>
-                            ) {
-                                searchData(response.body())
-                                Log.d("RESPONSE", response.body())
-                                Log.d("correct", response.body())
-                            }
-                        })
+                                override fun onResponse(
+                                    call: Call<String>,
+                                    response: Response<String>
+                                ) {
+                                    searchData(response.body())
+                                    Log.d("RESPONSE", response.body())
+                                    Log.d("correct", response.body())
+                                }
+                            })
+                    }
                 }
-            }
-        })
+            })
 
         //画面上部に検索件数の表示
         val catchData2 =intent.getStringExtra("RESULTS2")
@@ -100,7 +106,7 @@ class MuseumListActivity : AppCompatActivity() {
         //美術館の画像
         dataOfImage = "https://artscape.jp" + imageSearch.select("img").attr("src")
 
-        val intent = Intent(this@MuseumListActivity, MuseumInfo::class.java)
+        val intent = Intent(this@MuseumListActivity, MuseumInfoActivity::class.java)
         intent.putExtra("detail1", dataOfMuseumName)
         intent.putExtra("detail2", dataOfAddressNumber)
         intent.putExtra("detail3", dataOfAddress)

@@ -7,20 +7,21 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
     <application
+        android:name=".MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        android:name=".MyApplication">
-        <activity android:name=".MuseumInfo"></activity>
-        <activity android:name=".MuseumListActivity" />
+        android:theme="@style/AppTheme">
+        <activity android:name=".Activitys.FavoriteActivity"></activity>
+        <activity android:name=".Activitys.MuseumInfoActivity" />
+        <activity android:name=".Activitys.MuseumListActivity" />
         <activity android:name=".activity_museum_list" />
-        <activity android:name=".SearchMuseumActivity" />
-        <activity android:name=".ExhibitionListActivity" />
-        <activity android:name=".SearchExhibitionActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".Activitys.SearchMuseumActivity" />
+        <activity android:name=".Activitys.ExhibitionListActivity" />
+        <activity android:name=".Activitys.SearchExhibitionActivity" />
+        <activity android:name=".Activitys.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -1,4 +1,4 @@
-package net.tack.art_art
+package net.tack.art_art.Activitys
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,6 +8,10 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import io.realm.Realm
 import kotlinx.android.synthetic.main.activity_exhibition_list.*
+import net.tack.art_art.API.APIClient3
+import net.tack.art_art.Adapter.ViewAdapter
+import net.tack.art_art.R
+import net.tack.art_art.RowModel.RowModel
 import org.jsoup.Jsoup
 import retrofit2.Call
 import retrofit2.Callback
@@ -42,46 +46,53 @@ class ExhibitionListActivity : AppCompatActivity() {
         }
 
         val recyclerView = recyclerView_exhibitionlist
-        val adapter = ViewAdapter(catchData, object : ViewAdapter.ListListener {
-            override fun onClickRow(urlOfMuseum:String) {
-                Log.d("urlOfMuseum",urlOfMuseum)
+        val adapter = ViewAdapter(
+            catchData,
+            object : ViewAdapter.ListListener {
+                override fun onClickRow(urlOfMuseum: String) {
+                    Log.d("urlOfMuseum", urlOfMuseum)
 
-                //ArtScape内の「ミュージアム検索」のUrlを生成する
-                if (urlOfMuseum.startsWith("https://artscape.jp/mdb/")) {
-                    val id = urlOfMuseum.substring(24)
+                    //ArtScape内の「ミュージアム検索」のUrlを生成する
+                    if (urlOfMuseum.startsWith("https://artscape.jp/mdb/")) {
+                        val id = urlOfMuseum.substring(24)
 
-                    val apiClient = APIClient3
-                    apiClient.searchMuseums(id)
-                        .enqueue(object : Callback<String> {
-                            override fun onFailure(call: Call<String>, t: Throwable) {
-                                Log.d("FAILURE", t.message)
-                            }
+                        val apiClient = APIClient3
+                        apiClient.searchMuseums(id)
+                            .enqueue(object : Callback<String> {
+                                override fun onFailure(call: Call<String>, t: Throwable) {
+                                    Log.d("FAILURE", t.message)
+                                }
 
-                            override fun onResponse(
-                                call: Call<String>,
-                                response: Response<String>
-                            ) {
-                                searchData(response.body())
-                                Log.d("RESPONSE", response.body())
-                                Log.d("correct", response.body())
-                            }
-                        })
-                }
-            }
-
-            override fun onClickFavoriteIcon(isFavorite: Boolean, data: RowModel) {
-                realm.beginTransaction()
-                if (isFavorite) {
-                    realm.copyToRealm(data)
-                } else {
-                    val dataInRealm = realm.where(RowModel::class.java).equalTo("title", data.title).findFirst()
-                    if (dataInRealm != null) {
-                        dataInRealm.deleteFromRealm()
+                                override fun onResponse(
+                                    call: Call<String>,
+                                    response: Response<String>
+                                ) {
+                                    searchData(response.body())
+                                    Log.d("RESPONSE", response.body())
+                                    Log.d("correct", response.body())
+                                }
+                            })
                     }
                 }
-                realm.commitTransaction()
-            }
-        })
+
+                override fun onClickFavoriteIcon(
+                    isFavorite: Boolean,
+                    data: RowModel
+                ) {
+                    realm.beginTransaction()
+                    if (isFavorite) {
+                        realm.copyToRealm(data)
+                    } else {
+                        val dataInRealm =
+                            realm.where(RowModel::class.java)
+                                .equalTo("title", data.title).findFirst()
+                        if (dataInRealm != null) {
+                            dataInRealm.deleteFromRealm()
+                        }
+                    }
+                    realm.commitTransaction()
+                }
+            })
 
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = LinearLayoutManager(this)
@@ -100,10 +111,7 @@ class ExhibitionListActivity : AppCompatActivity() {
     override fun onPause() {
         super.onPause()
         realm.close()
-
     }
-
-
 
     //ArtScape内の「ミュージアム検索」のWEBSITEからデータを取得する
     private fun searchData(searchResult:String?){
@@ -131,7 +139,7 @@ class ExhibitionListActivity : AppCompatActivity() {
         //美術館の画像
         dataOfImage = "https://artscape.jp" + imageSearch.select("img").attr("src")
 
-        val intent = Intent(this@ExhibitionListActivity, MuseumInfo::class.java)
+        val intent = Intent(this@ExhibitionListActivity, MuseumInfoActivity::class.java)
         intent.putExtra("detail1", dataOfMuseumName)
         intent.putExtra("detail2", dataOfAddressNumber)
         intent.putExtra("detail3", dataOfAddress)

@@ -1,10 +1,13 @@
-package net.tack.art_art
+package net.tack.art_art.Adapter
 
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import net.tack.art_art.R
+import net.tack.art_art.RowModel.RowModel
+import net.tack.art_art.VIewHolder.HomeViewHolder
 
 
 class ViewAdapter(private val list: ArrayList<RowModel>, private val listener: ListListener) : RecyclerView.Adapter<HomeViewHolder>(){
@@ -35,19 +38,11 @@ class ViewAdapter(private val list: ArrayList<RowModel>, private val listener: L
             listener.onClickRow(list[position].urlOfMuseum)
         }
 
-//        realm = Realm.getDefaultInstance()
 
-//        holder.favoriteIcon.setImageResource(R.drawable.bookmarkstar)
-//
         holder.favoriteIcon.setOnClickListener{
             holder.favoriteIcon2.visibility = View.VISIBLE
             holder.favoriteIcon.visibility = View.GONE
             listener.onClickFavoriteIcon(true, list[position])
-
-//                realm.beginTransaction()
-//                val dataBase = realm.createObject(RowModel::class.java)
-//                dataBase.title = "isFavorite"
-//                realm.commitTransaction()
 
         }
 
@@ -55,15 +50,6 @@ class ViewAdapter(private val list: ArrayList<RowModel>, private val listener: L
             holder.favoriteIcon.visibility = View.VISIBLE
             holder.favoriteIcon2.visibility = View.GONE
             listener.onClickFavoriteIcon(false, list[position])
-
-//            realm.beginTransaction()
-//
-//            val results:RealmResults<RowModel> = realm.where(RowModel::class.java).findAll()
-//            val selectDB = results.get(position)
-//
-//            selectDB?.deleteFromRealm()
-//            realm.commitTransaction()
-
 
         }
     }

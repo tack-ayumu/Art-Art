@@ -1,10 +1,13 @@
-package net.tack.art_art
+package net.tack.art_art.Adapter
 
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import net.tack.art_art.VIewHolder.HomeViewHolder2
+import net.tack.art_art.R
+import net.tack.art_art.RowModel.RowModel
 
 
 class ViewAdapter2(private val list: ArrayList<RowModel>, private val listener: ListListener) : RecyclerView.Adapter<HomeViewHolder2>() {

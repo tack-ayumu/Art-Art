@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/doga"
-    tools:context=".SearchExhibitionActivity">
+    tools:context=".Activitys.SearchExhibitionActivity">
 
     <!-- 1:美術展（exhibition)検索 -->
     <LinearLayout

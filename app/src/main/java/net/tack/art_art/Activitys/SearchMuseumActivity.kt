@@ -1,4 +1,4 @@
-package net.tack.art_art
+package net.tack.art_art.Activitys
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,6 +6,9 @@ import android.util.Log
 import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_search_museum.*
+import net.tack.art_art.API.APIClient2
+import net.tack.art_art.R
+import net.tack.art_art.RowModel.RowModel
 import org.jsoup.Jsoup
 import retrofit2.Call
 import retrofit2.Callback
@@ -83,7 +86,8 @@ class SearchMuseumActivity : AppCompatActivity() {
         //美術館名、美術館の住所、開催中の美術展のタイトルを抽出する
         val dataList = ArrayList<RowModel>()
         for (i in exhiInfo.indices) {
-            val data : RowModel = RowModel().also {
+            val data : RowModel = RowModel()
+                .also {
                 it.nameOfMuseum = exhiInfo[i].select("a").text()
                 it.museumAddress = exhiInfo[i].select("p.mdbAddress").text()
                 it.title = exhiInfo[i].select("span.detail").text()
@@ -97,7 +101,8 @@ class SearchMuseumActivity : AppCompatActivity() {
         val numberOfSearches = exhiInfo2.select("div.mainColHeading").text()
 
         //intentで情報を引き渡す
-        val intent = Intent(this@SearchMuseumActivity,MuseumListActivity::class.java).apply {
+        val intent = Intent(this@SearchMuseumActivity,
+            MuseumListActivity::class.java).apply {
                 putExtra("RESULTS",dataList)
                 putExtra("RESULTS2",numberOfSearches)
             }
