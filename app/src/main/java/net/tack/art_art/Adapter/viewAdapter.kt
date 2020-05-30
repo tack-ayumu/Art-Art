@@ -11,8 +11,6 @@ import net.tack.art_art.VIewHolder.HomeViewHolder
 
 
 class ViewAdapter(private val list: ArrayList<RowModel>, private val listener: ListListener) : RecyclerView.Adapter<HomeViewHolder>(){
-//    lateinit var realm:Realm
-
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeViewHolder {
         Log.d("Adapter", "onCreateViewHolder")

@@ -28,9 +28,10 @@ class MainActivity : AppCompatActivity() {
 
         }
 
-        //「お気に入り」ボタン編集中の旨、toast通知
+        //「お気に入り」の検索
         linearLayout_search_bookmark.setOnClickListener {
-            Toast.makeText(this, "編集中です",Toast.LENGTH_SHORT).show()
+            val intent = Intent(this@MainActivity, FavoriteActivity::class.java)
+            startActivity(intent)
         }
 
         //「note」ボタン編集中の旨、toast通知
